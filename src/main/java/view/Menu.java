@@ -4,7 +4,7 @@ import utils.UserInput;
 
 public class Menu {
 
-    private int number = 0;
+    //    private  int number = 0;
     private UserInput userInput = new UserInput();
 
     public void showMenu() {
@@ -22,24 +22,30 @@ public class Menu {
 
     }
 
-    public void chooseOptionMenu() {
-        showMenu();
-        while (number != 2) {
-            number = userInput.getNumber();
+    public void menuNavigation() {
+        int number;
+        do {
+            showMenu();
+            number = userInput.getNumberFromUser();
+            chooseOptionMenu(number);
+            System.out.println("Number " + number);
+        } while (number != 2);
+    }
 
-            switch (number) {
-                case 1:
-                    System.out.println("Adres księgarni to: kontakt@ksiegarnia.pl");
-                    break;
-                case 2:
-                    // wyjście z programu
-                    break;
-                case 3:
-                    //pokazuje książki
-                    break;
-                default:
-                    showMenu();
-            }
+    public void chooseOptionMenu(int inputNumber) {
+        switch (inputNumber) {
+            case 1:
+                System.out.println("Adres księgarni to: kontakt@ksiegarnia.pl");
+                break;
+            case 2:
+                // wyjście z programu
+                break;
+            case 3:
+                //pokazuje książki
+                break;
+            default:
+                break;
+//                showMenu();
         }
     }
 

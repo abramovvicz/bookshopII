@@ -4,17 +4,21 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class UserInput {
-    public Scanner scanner = new Scanner(System.in);
 
-    public int getNumber() {
+    public int getNumberFromUser() {
+
+        int scannerTemp = 1;
         try {
-            System.out.println("Choose option menu: ");
-            return scanner.nextInt();
+             Scanner scanner = new Scanner(System.in);
 
+            System.out.println("Choose option menu: ");
+            scannerTemp = scanner.nextInt();
         } catch (InputMismatchException e) {
             System.out.println("You must enter number!");
         }
-        return Integer.parseInt(null); //TODO: ask how to resolved this issue
+        return scannerTemp;
+
+//        return 0; //TODO: ask how to resolved this issue
     }
 
 

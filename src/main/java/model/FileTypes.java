@@ -8,7 +8,7 @@ public enum FileTypes {
         this.fileTypes = fileTypes;
     }
 
-    public String getFileTypes() {
+    public String getFileAdress() {
         return fileTypes;
     }
 }

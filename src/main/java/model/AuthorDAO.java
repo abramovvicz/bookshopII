@@ -3,20 +3,18 @@ package model;
 import utils.UtilLoadFiles;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class AuthorDAO {
 
     UtilLoadFiles utilLoadFiles = UtilLoadFiles.getInstance();
     private Author author;
-    private List<String[]> dataFile = utilLoadFiles.loadFile(FileTypes.AUTHORS.getFileTypes());
-    private List<Author> authorsList = new ArrayList<>();
+    private List<Author> authorsList = utilLoadFiles.loadAuthorFile(FileTypes.AUTHORS.getFileAdress());
 
     public AuthorDAO() throws IOException {
-        writeAuthorsList(dataFile);
+//        writeAuthorsList(dataFile);
     }
-    
+
 
     public List<Author> writeAuthorsList(List<String[]> dataFile) {
 //        for (String[] s : dataFile) {
@@ -26,7 +24,7 @@ public class AuthorDAO {
         dataFile.forEach(x -> authorsList.add(author = new Author(Integer.parseInt(x[0]), x[1], Integer.parseInt(x[2]))));
 //        authorsList.add(author);
 //        System.out.println(authorsList);
-        authorsList.forEach(System.out::print);
+//        authorsList.forEach(System.out::print);
         return authorsList;
     }
 }

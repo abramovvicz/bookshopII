@@ -18,7 +18,7 @@ public class Author {
 
     @Override
     public String toString() {
-        return "############## AUTHOR " + id + " ###############" + "\n" +
+        return "Author ID: " + id + "\n" +
                 "FULL NAME: " + fullName + "\n" +
                 "AGE: " + age + "\n" + "\n";
     }
