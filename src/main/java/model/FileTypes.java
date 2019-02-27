@@ -1,7 +1,7 @@
 package model;
 
 public enum FileTypes {
-    BOOKS("books.csv"), AUTHORS("authors.csv"), CATEGORIES("categories.csv");
+    BOOKS("books.csv"), AUTHORS("authors.csv"), CATEGORIES("categoris.csv");
     private String fileTypes;
 
     FileTypes(String fileTypes) {

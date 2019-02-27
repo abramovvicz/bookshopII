@@ -1,11 +1,12 @@
 package view;
 
 import utils.UserInput;
+import utils.UtilLoadFiles;
 
 public class Menu {
 
-    //    private  int number = 0;
     private UserInput userInput = new UserInput();
+    private UtilLoadFiles utilLoadFiles = UtilLoadFiles.getInstance();
 
     public void showMenu() {
 
@@ -17,7 +18,7 @@ public class Menu {
         System.out.println("                                                 ");
         System.out.println("      2. Exti program                            ");
         System.out.println("                                                 ");
-        System.out.println("      3. Show books                              ");
+        System.out.println("      3. Show all books                           ");
         System.out.println("*************************************************");
 
     }
@@ -41,7 +42,7 @@ public class Menu {
                 // wyjście z programu
                 break;
             case 3:
-                //pokazuje książki
+                utilLoadFiles.showAllBooks();
                 break;
             default:
                 break;
