@@ -15,4 +15,8 @@ public class CategoryDAO {
         utilLoadFiles.readFiles(FileTypes.CATEGORIES);
 
     }
+
+    public void getDataFromUserAboutNewCategory() {
+        
+    }
 }

@@ -12,11 +12,22 @@ public class UserInput {
             System.out.println(": ");
             scannerTemp = scanner.nextInt();
         } catch (InputMismatchException e) {
-            System.out.println("You must enter number!");
+            System.out.println("You must enter int!");
         }
         return scannerTemp;
 
     }
 
 
+    public String getStringFormUser() {
+        String scannerTemp = "";
+        try {
+            Scanner scanner = new Scanner(System.in);
+            scannerTemp = scanner.nextLine();
+            System.out.println(": ");
+        } catch (InputMismatchException e) {
+            System.out.println("You must enter String!");
+        }
+        return scannerTemp;
+    }
 }

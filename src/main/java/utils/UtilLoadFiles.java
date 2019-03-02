@@ -1,5 +1,6 @@
 package utils;
 
+import lombok.Getter;
 import model.Author;
 import model.Book;
 import model.Category;
@@ -14,9 +15,9 @@ import java.util.List;
 public class UtilLoadFiles {
 
 
-    public static List<Book> listFromBookFile = new ArrayList<>();
+    private static List<Book> listFromBookFile = new ArrayList<>();
     public static List<Author> listFromAuthorFile = new ArrayList<>();
-    public static List<Category> listFromCategoryFile = new ArrayList<>();
+    private static List<Category> listFromCategoryFile = new ArrayList<>();
     private static UtilLoadFiles instance;
     private BufferedReader bufferedReader;
     private String[] data;
@@ -93,8 +94,7 @@ public class UtilLoadFiles {
         for (int i = 0; i < idsAuthors.length; i++) {
             int finalI = i; //TODO: spytać Przemka - czemu taka zmienna;
             listAuthorsForBook.add(listFromAuthorFile
-                    .stream().filter(x -> x
-                            .getId() == Integer.valueOf(idsAuthors[finalI]))
+                    .stream().filter(x -> x.getId() == Integer.valueOf(idsAuthors[finalI]))
                     .findFirst().get());
         }
         return listAuthorsForBook;
@@ -108,36 +108,51 @@ public class UtilLoadFiles {
     }
 
 
+
+
     public void loadCategoriesFile() throws IOException {
         String[] s = splitStringFromBuffer();
         Category category = new Category(Integer.parseInt(s[0]), s[1], Integer.parseInt(s[2]));
         listFromCategoryFile.add(category);
     }
 
-    private String[] splitStringFromBuffer() throws IOException {
+    private String[] splitStringFromBuffer() throws IOException { //TODO: write try catch
         return bufferedReader.readLine().split(";");
     }
 
 
     public void showAllBooks() {
-        listFromBookFile.forEach(System.out::print);
+//        listFromBookFile.forEach(System.out::print);
+        listFromBookFile.stream().map(x -> x.getTitle()).forEach(x -> System.out.println("Tytuł: " + x));
     }
 
 
+    public void showAllAuthors() {
+//        listFromAuthorFile.forEach(System.out::print);
+        listFromAuthorFile.stream().map(x -> x.getFullName())
+                .forEach(x -> System.out.println("Autor: " + x));
+    }
+
+    public void showAllCategories() {
+        listFromCategoryFile.stream().map(x -> x.getCategoryName()).forEach(System.out::println);
+    }
 }
 
 
 //TODO: to think about this****
 
-//        Stream<String> stream = Files.lines(Paths.get(file));
-//        String[] t = stream.map(x->x.split(";"));
+//TODO:
+/*    private void someMethod() throws IOException {
+        Stream<String> stream = Files.lines(Paths.get("books.csv"));
+        String[] t = stream.map(x -> x.split(";"));
 
-      /*  for (int i = 0; i < listFromFile.size(); i++) {
-            String[] someArray = listFromFile.get(i);
+        for (int i = 0; i < listFromBookFile.size(); i++) {
+            String[] someArray = listFromBookFile.get(i);
             for (int j = 0; j < someArray.length; j++) {
                 System.out.println(someArray[j]);
             }
-        }*/
+        }
+    }*/
 
 
 
