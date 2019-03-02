@@ -34,11 +34,11 @@ public class AuthorDAO {
             System.out.println("Enter Author age");  //TODO: check if user didnt enter some funny data
             int numberFromUser = userInput.getNumberFromUser();
             if (numberFromUser < 0 || numberFromUser > 100) {
-                System.out.println("please enter vailid data");
+                System.out.println("please enter vailid data" + numberFromUser);
                 temp = numberFromUser;
                 numberFromUser = userInput.getNumberFromUser();
-                temp = numberFromUser;
             }
+            temp = numberFromUser;
         } catch (Exception e) {
             System.out.println("some problem");
         }
