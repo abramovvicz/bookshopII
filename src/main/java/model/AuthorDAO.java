@@ -3,6 +3,8 @@ package model;
 import utils.UserInput;
 import utils.UtilLoadFiles;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -12,9 +14,10 @@ public class AuthorDAO {
     private List<Author> listOFAuthors = UtilLoadFiles.listFromAuthorFile;
     private UserInput userInput = new UserInput();
     private Author author;
+    private FileWriter fileWriter = new FileWriter("newAuthors.csv");
 
 
-    public AuthorDAO() {
+    public AuthorDAO() throws IOException {
         utilLoadFiles.readFiles(FileTypes.AUTHORS);
     }
 
@@ -63,6 +66,51 @@ public class AuthorDAO {
         author = new Author(id, name, age);
         listOFAuthors.add(author);
         System.out.println("Author succesfull added to database");
+    }
+
+    public void saveAuthorListToFile() throws IOException {
+        List<Integer> id = listOFAuthors.stream().map(Author::getId).collect(Collectors.toList());
+        List<String> names = listOFAuthors.stream().map(Author::getFullName).collect(Collectors.toList());
+        List<Integer> ages = listOFAuthors.stream().map(Author::getAge).collect(Collectors.toList());
+
+        for (int i = 0; i < listOFAuthors.size(); i++) {
+            System.out.println("wiek autorów " + ages.get(i));
+
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append(id.get(i) + ";" + names.get(i) + ";" + ages.get(i));
+            fileWriter.write(stringBuilder.toString());
+            fileWriter.write("\n");
+
+
+        }
+
+//            System.out.println("names of authors " + s);
+//            String[] split2 = s.split(",");
+//            fileWriter.write(Arrays.asList(split2).stream().collect(Collectors.joining(";")));
+//            fileWriter.write("\n"); // newline
+//        }
+//        for (int i : id) {
+//            System.out.println("names of authors " + i);
+//            String[] split2 = String.valueOf(i).split(",");
+//            fileWriter.write(Arrays.asList(split2).stream().collect(Collectors.joining(";")));
+//            fileWriter.write("\n"); // newline
+//        }
+//
+//
+//        for (int i : ages) {
+//            System.out.println("names of authors " + i);
+//            String[] split2 = String.valueOf(i).split(",");
+//            fileWriter.write(Arrays.asList(split2).stream().collect(Collectors.joining(";")));
+//            fileWriter.write("\n"); // newline
+//        }
+
+        fileWriter.close();
+
+//        fileWriter.write(String.valueOf(names));
+//        fileWriter.write(String.valueOf(ages));
+
+//        Path path = Files.createFile(Paths.get("modified.txt")); // tworzenie pliku
+//        Path files = Files.write(path, authors.stream().collect(Collectors.joining(","))); // zapisywanie treści do pliku
     }
 
 

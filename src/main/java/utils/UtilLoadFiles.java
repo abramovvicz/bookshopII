@@ -17,7 +17,7 @@ public class UtilLoadFiles {
 
     private static List<Book> listFromBookFile = new ArrayList<>();
     public static List<Author> listFromAuthorFile = new ArrayList<>();
-    private static List<Category> listFromCategoryFile = new ArrayList<>();
+    public static List<Category> listFromCategoryFile = new ArrayList<>();
     private static UtilLoadFiles instance;
     private BufferedReader bufferedReader;
     private String[] data;
@@ -128,13 +128,14 @@ public class UtilLoadFiles {
 
 
     public void showAllAuthors() {
-//        listFromAuthorFile.forEach(System.out::print);
-        listFromAuthorFile.stream().map(x -> x.getFullName())
-                .forEach(x -> System.out.println("Autor: " + x));
+        listFromAuthorFile.forEach(System.out::print);
+//        listFromAuthorFile.stream().map(x -> x.getFullName())
+//                .forEach(x -> System.out.println("Autor: " + x));
     }
 
     public void showAllCategories() {
-        listFromCategoryFile.stream().map(x -> x.getCategoryName()).forEach(System.out::println);
+        listFromCategoryFile.forEach(System.out::println);
+//        listFromCategoryFile.stream().map(x -> x.getCategoryName()).forEach(System.out::println);
     }
 }
 

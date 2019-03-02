@@ -5,12 +5,14 @@ import lombok.Getter;
 
 @Getter
 public class Category {
+    private static int counter = 1;
+
     int categoryID;
     String categoryName;
     int showPriority;
 
     public Category(int categoryID, String categoryName, int showPriority) {
-        this.categoryID = categoryID;
+        this.categoryID = counter++;
         this.categoryName = categoryName;
         this.showPriority = showPriority;
     }
