@@ -15,7 +15,7 @@ import java.util.List;
 public class UtilLoadFiles {
 
 
-    private static List<Book> listFromBookFile = new ArrayList<>();
+    public static List<Book> listFromBookFile = new ArrayList<>();
     public static List<Author> listFromAuthorFile = new ArrayList<>();
     public static List<Category> listFromCategoryFile = new ArrayList<>();
     private static UtilLoadFiles instance;
@@ -100,7 +100,7 @@ public class UtilLoadFiles {
         return listAuthorsForBook;
     }
 
-    public void loadAuthorsFile() throws IOException {
+    public void loadAuthorsFile() throws IOException { //TODO: write try catch
         String[] s = splitStringFromBuffer();
         Author author = new Author(Integer.parseInt(s[0]), s[1], Integer.parseInt(s[2]));
         listFromAuthorFile.add(author);

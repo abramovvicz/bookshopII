@@ -14,7 +14,7 @@ public class AuthorDAO {
     private List<Author> listOFAuthors = UtilLoadFiles.listFromAuthorFile;
     private UserInput userInput = new UserInput();
     private Author author;
-    private FileWriter fileWriter = new FileWriter("newAuthors.csv");
+    private FileWriter fileWriter;
 
 
     public AuthorDAO() throws IOException {
@@ -69,10 +69,12 @@ public class AuthorDAO {
     }
 
     public void saveAuthorListToFile() throws IOException {
+
+        //TODO: zmienić na zwykłe fory ponieważ ze streama można skorzystać tylko raz
         List<Integer> id = listOFAuthors.stream().map(Author::getId).collect(Collectors.toList());
         List<String> names = listOFAuthors.stream().map(Author::getFullName).collect(Collectors.toList());
         List<Integer> ages = listOFAuthors.stream().map(Author::getAge).collect(Collectors.toList());
-
+        fileWriter = new FileWriter("newAuthors.csv");
         for (int i = 0; i < listOFAuthors.size(); i++) {
             System.out.println("wiek autorów " + ages.get(i));
 
@@ -80,11 +82,14 @@ public class AuthorDAO {
             stringBuilder.append(id.get(i) + ";" + names.get(i) + ";" + ages.get(i));
             fileWriter.write(stringBuilder.toString());
             fileWriter.write("\n");
-
-
         }
 
-//            System.out.println("names of authors " + s);
+//
+
+        fileWriter.close();
+
+
+//        System.out.println("names of authors " + s);
 //            String[] split2 = s.split(",");
 //            fileWriter.write(Arrays.asList(split2).stream().collect(Collectors.joining(";")));
 //            fileWriter.write("\n"); // newline
@@ -103,9 +108,6 @@ public class AuthorDAO {
 //            fileWriter.write(Arrays.asList(split2).stream().collect(Collectors.joining(";")));
 //            fileWriter.write("\n"); // newline
 //        }
-
-        fileWriter.close();
-
 //        fileWriter.write(String.valueOf(names));
 //        fileWriter.write(String.valueOf(ages));
 

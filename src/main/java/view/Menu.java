@@ -94,7 +94,6 @@ public class Menu {
             case 7:
                 categoryDAO.getDataFromUserAboutNewCategory();
                 break;
-
             case 8:
               authorDAO.saveAuthorListToFile();
                 break;
