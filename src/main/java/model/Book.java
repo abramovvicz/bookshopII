@@ -7,7 +7,7 @@ import java.util.List;
 
 @Getter
 @Setter
-public class Book {
+public class Book  implements Comparable{
 
     private int id;
     private String binding;
@@ -36,6 +36,11 @@ public class Book {
                 "Author: " + author + "\n" +
                 "ISBN: " + isbn + "\n" +
                 "YEAR: " + year + "\n" + "\n";
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        return 0;
     }
 }
 

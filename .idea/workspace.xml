@@ -2,18 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="687f272d-d364-4caf-a499-becddf31c544" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/model/BookFunctions.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/BookFunctionsTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/AuthorDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/AuthorDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Book.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utils/UtilLoadFiles.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utils/UtilLoadFiles.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/Menu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/model/AuthorDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/model/AuthorDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/BookFunctions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/BookFunctions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/BookFunctionsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/BookFunctionsTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/model/Book.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/model/Book.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/utils/UtilLoadFiles.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/utils/UtilLoadFiles.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/view/Menu.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/view/Menu.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -32,7 +25,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/main/Main.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="270">
-              <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
+              <caret line="18" selection-start-line="18" selection-end-line="18" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -66,13 +59,27 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/model/BookFunctions.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="321">
-              <caret line="147" column="16" selection-start-line="147" selection-start-column="16" selection-end-line="147" selection-end-column="16" />
+            <state relative-caret-position="269">
+              <caret line="39" column="46" selection-start-line="39" selection-start-column="22" selection-end-line="39" selection-end-column="46" />
               <folding>
                 <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/model/Book.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="480">
+              <caret line="42" column="8" selection-start-line="42" selection-start-column="8" selection-end-line="42" selection-end-column="17" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1094#1095#0" expanded="true" />
+                <element signature="e#1118#1119#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -94,49 +101,24 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test/java/BookFunctionsTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="443">
-              <caret line="128" lean-forward="true" selection-start-line="128" selection-end-line="128" />
+            <state relative-caret-position="325">
+              <caret line="78" column="69" selection-start-line="78" selection-start-column="69" selection-end-line="78" selection-end-column="69" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#4074#4075#0" expanded="true" />
-                <element signature="e#3866#3867#0" expanded="true" />
-                <element signature="e#3961#3962#0" expanded="true" />
-                <element signature="e#4615#4616#0" expanded="true" />
+                <element signature="e#4133#4134#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pom.xml">
+        <entry file="file://$PROJECT_DIR$/src/main/java/model/FileTypes.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="70" column="21" selection-start-line="70" selection-start-column="21" selection-end-line="70" selection-end-column="21" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/view/Menu.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="95" column="22" selection-start-line="95" selection-start-column="22" selection-end-line="95" selection-end-column="22" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="method#showCategoryMenus#0;class#Menu#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/model/Category.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="14" column="35" selection-start-line="14" selection-start-column="35" selection-end-line="14" selection-end-column="35" />
+            <state relative-caret-position="45">
+              <caret line="3" column="44" selection-start-line="3" selection-start-column="33" selection-end-line="3" selection-end-column="44" />
             </state>
           </provider>
         </entry>
@@ -145,7 +127,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/model/AuthorDAO.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="199">
-              <caret line="76" column="54" lean-forward="true" selection-start-line="76" selection-start-column="54" selection-end-line="76" selection-end-column="54" />
+              <caret line="76" column="54" selection-start-line="76" selection-start-column="54" selection-end-line="76" selection-end-column="54" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -169,6 +151,8 @@
       <find>copu</find>
       <find>authors.csv</find>
       <find>searchAllBooksAfterSomeYear</find>
+      <find>returnBookBeforeSomeYear</find>
+      <find>returnBooksWithSomeParameters</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -195,10 +179,10 @@
         <option value="$PROJECT_DIR$/src/main/java/model/BookFunction.java" />
         <option value="$PROJECT_DIR$/src/main/java/utils/UtilLoadFiles.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/model/Book.java" />
         <option value="$PROJECT_DIR$/src/main/java/model/AuthorDAO.java" />
-        <option value="$PROJECT_DIR$/src/test/java/BookFunctionsTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/model/Book.java" />
         <option value="$PROJECT_DIR$/src/main/java/model/BookFunctions.java" />
+        <option value="$PROJECT_DIR$/src/test/java/BookFunctionsTest.java" />
       </list>
     </option>
   </component>
@@ -310,7 +294,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ToolWindowSonarLint.ShowToolbar" value="false" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1551628436469" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1551903403548" />
     <property name="extract.method.default.visibility" value="private" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
@@ -334,7 +318,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.BookFunctionsTest.returnAvargeYearFor">
+  <component name="RunManager" selected="JUnit.BookFunctionsTest.searchLastRelease">
     <configuration name="BookFunctionsTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="bookShopII" />
       <option name="PACKAGE_NAME" value="" />
@@ -344,41 +328,41 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="BookFunctionsTest.listOfLists" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="BookFunctionsTest.searchLastRelease" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="bookShopII" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="BookFunctionsTest" />
-      <option name="METHOD_NAME" value="listOfLists" />
+      <option name="METHOD_NAME" value="searchLastRelease" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="BookFunctionsTest.returnAvargeYearFor" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="BookFunctionsTest.searchLastTwoBooks" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="bookShopII" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="BookFunctionsTest" />
-      <option name="METHOD_NAME" value="returnAvargeYearFor" />
+      <option name="METHOD_NAME" value="searchLastTwoBooks" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="BookFunctionsTest.searchAllBooksAfterSomeYearFor" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="BookFunctionsTest.searchLastTwoBooksFor" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="bookShopII" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="BookFunctionsTest" />
-      <option name="METHOD_NAME" value="searchAllBooksAfterSomeYearFor" />
+      <option name="METHOD_NAME" value="searchLastTwoBooksFor" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="BookFunctionsTest.searchBooksAfterSomeYearFor" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="BookFunctionsTest.searchLastTwoBooksStream" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="bookShopII" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="BookFunctionsTest" />
-      <option name="METHOD_NAME" value="searchBooksAfterSomeYearFor" />
+      <option name="METHOD_NAME" value="searchLastTwoBooksStream" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -386,11 +370,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.BookFunctionsTest.returnAvargeYearFor" />
-        <item itemvalue="JUnit.BookFunctionsTest.searchAllBooksAfterSomeYearFor" />
-        <item itemvalue="JUnit.BookFunctionsTest.searchBooksAfterSomeYearFor" />
-        <item itemvalue="JUnit.BookFunctionsTest.listOfLists" />
+        <item itemvalue="JUnit.BookFunctionsTest.searchLastRelease" />
         <item itemvalue="JUnit.BookFunctionsTest" />
+        <item itemvalue="JUnit.BookFunctionsTest.searchLastTwoBooksStream" />
+        <item itemvalue="JUnit.BookFunctionsTest.searchLastTwoBooks" />
+        <item itemvalue="JUnit.BookFunctionsTest.searchLastTwoBooksFor" />
       </list>
     </recent_temporary>
   </component>
@@ -408,42 +392,42 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="BookFunctionsTest - 2019.03.03 at 15h 42m 50s.xml">
+    <history-entry file="BookFunctionsTest - 2019.03.06 at 21h 06m 16s.xml">
       <configuration name="BookFunctionsTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="BookFunctionsTest - 2019.03.03 at 15h 43m 49s.xml">
+    <history-entry file="BookFunctionsTest - 2019.03.06 at 21h 06m 42s.xml">
       <configuration name="BookFunctionsTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="BookFunctionsTest_listOfLists - 2019.03.03 at 15h 44m 03s.xml">
-      <configuration name="BookFunctionsTest.listOfLists" configurationId="JUnit" />
+    <history-entry file="BookFunctionsTest - 2019.03.06 at 21h 08m 50s.xml">
+      <configuration name="BookFunctionsTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="BookFunctionsTest_listOfLists - 2019.03.03 at 15h 44m 35s.xml">
-      <configuration name="BookFunctionsTest.listOfLists" configurationId="JUnit" />
+    <history-entry file="BookFunctionsTest - 2019.03.06 at 21h 09m 16s.xml">
+      <configuration name="BookFunctionsTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="BookFunctionsTest_listOfLists - 2019.03.03 at 15h 45m 07s.xml">
-      <configuration name="BookFunctionsTest.listOfLists" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="BookFunctionsTest_listOfLists - 2019.03.03 at 15h 45m 49s.xml">
-      <configuration name="BookFunctionsTest.listOfLists" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="BookFunctionsTest_searchBooksAfterSomeYearFor - 2019.03.03 at 15h 54m 09s.xml">
-      <configuration name="BookFunctionsTest.searchBooksAfterSomeYearFor" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="BookFunctionsTest_searchAllBooksAfterSomeYearFor - 2019.03.03 at 15h 57m 24s.xml">
-      <configuration name="BookFunctionsTest.searchAllBooksAfterSomeYearFor" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="BookFunctionsTest_searchAllBooksAfterSomeYearFor - 2019.03.03 at 15h 57m 37s.xml">
-      <configuration name="BookFunctionsTest.searchAllBooksAfterSomeYearFor" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="BookFunctionsTest_returnAvargeYearFor - 2019.03.03 at 16h 00m 24s.xml">
+    <history-entry file="BookFunctionsTest_returnAvargeYearFor - 2019.03.06 at 21h 10m 29s.xml">
       <configuration name="BookFunctionsTest.returnAvargeYearFor" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="BookFunctionsTest_returnAvargeYear - 2019.03.06 at 21h 10m 40s.xml">
+      <configuration name="BookFunctionsTest.returnAvargeYear" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="BookFunctionsTest_returnAvargeYear - 2019.03.06 at 21h 12m 47s.xml">
+      <configuration name="BookFunctionsTest.returnAvargeYear" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="BookFunctionsTest_returnAvargeYear - 2019.03.06 at 21h 13m 00s.xml">
+      <configuration name="BookFunctionsTest.returnAvargeYear" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="BookFunctionsTest - 2019.03.06 at 21h 13m 06s.xml">
+      <configuration name="BookFunctionsTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="BookFunctionsTest_searchLastTwoBooksFor - 2019.03.06 at 21h 14m 19s.xml">
+      <configuration name="BookFunctionsTest.searchLastTwoBooksFor" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49809885" visible="true" weight="0.25679544" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49809885" visible="true" weight="0.25679544" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -453,7 +437,7 @@
       <window_info id="Favorites" order="7" sideWeight="0.50190115" side_tool="true" weight="0.24964234" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49928468" weight="0.32891566" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4985694" visible="true" weight="0.32891566" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4985694" visible="true" weight="0.32891566" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -513,14 +497,14 @@
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/BookFunctionsTest.java</url>
-          <line>37</line>
+          <url>file://$PROJECT_DIR$/src/main/java/model/BookFunctions.java</url>
+          <line>146</line>
           <properties />
-          <option name="timeStamp" value="4" />
+          <option name="timeStamp" value="11" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/test/java/BookFunctionsTest.java</url>
-          <line>93</line>
+          <line>94</line>
           <properties class="BookFunctionsTest" method="sumOfYears">
             <option name="EMULATED" value="true" />
           </properties>
@@ -528,7 +512,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/test/java/BookFunctionsTest.java</url>
-          <line>209</line>
+          <line>218</line>
           <properties class="BookFunctionsTest" method="listOfLists">
             <option name="EMULATED" value="true" />
           </properties>
@@ -590,13 +574,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/model/FileTypes.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="44" selection-start-line="3" selection-start-column="33" selection-end-line="3" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/assertj/assertj-core/3.11.1/assertj-core-3.11.1.jar!/org/assertj/core/api/Assertions.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="177">
@@ -604,16 +581,6 @@
           <folding>
             <element signature="e#11288#11289#0" expanded="true" />
             <element signature="e#11353#11354#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/utils/UtilLoadFiles.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="215">
-          <caret line="17" column="10" selection-start-line="17" selection-start-column="10" selection-end-line="17" selection-end-column="10" />
-          <folding>
-            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -643,20 +610,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/model/Book.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="16" selection-start-line="17" selection-start-column="16" selection-end-line="17" selection-end-column="16" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/main/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
-          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
+          <caret line="18" selection-start-line="18" selection-end-line="18" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -666,7 +623,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/model/AuthorDAO.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="199">
-          <caret line="76" column="54" lean-forward="true" selection-start-line="76" selection-start-column="54" selection-end-line="76" selection-end-column="54" />
+          <caret line="76" column="54" selection-start-line="76" selection-start-column="54" selection-end-line="76" selection-end-column="54" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -699,26 +656,59 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/BookFunctionsTest.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/utils/UtilLoadFiles.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="443">
-          <caret line="128" lean-forward="true" selection-start-line="128" selection-end-line="128" />
+        <state relative-caret-position="215">
+          <caret line="17" column="10" selection-start-line="17" selection-start-column="10" selection-end-line="17" selection-end-column="10" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#4074#4075#0" expanded="true" />
-            <element signature="e#3866#3867#0" expanded="true" />
-            <element signature="e#3961#3962#0" expanded="true" />
-            <element signature="e#4615#4616#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/model/FileTypes.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="44" selection-start-line="3" selection-start-column="33" selection-end-line="3" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/model/Book.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="42" column="8" selection-start-line="42" selection-start-column="8" selection-end-line="42" selection-end-column="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1094#1095#0" expanded="true" />
+            <element signature="e#1118#1119#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/junit/platform/junit-platform-commons/1.4.0/junit-platform-commons-1.4.0.jar!/org/junit/platform/commons/util/ReflectionUtils.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="157">
+          <caret line="302" selection-start-line="302" selection-end-line="302" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/model/BookFunctions.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="321">
-          <caret line="147" column="16" selection-start-line="147" selection-start-column="16" selection-end-line="147" selection-end-column="16" />
+        <state relative-caret-position="269">
+          <caret line="39" column="46" selection-start-line="39" selection-start-column="22" selection-end-line="39" selection-end-column="46" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/BookFunctionsTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="325">
+          <caret line="78" column="69" selection-start-line="78" selection-start-column="69" selection-end-line="78" selection-end-column="69" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#4133#4134#0" expanded="true" />
           </folding>
         </state>
       </provider>

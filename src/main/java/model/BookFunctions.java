@@ -25,8 +25,6 @@ public class BookFunctions {
     //ex2
     public List<Book> searchLastTwoBooks(List<Book> bookList) {
         int size = bookList.size();
-
-
         if (bookList.isEmpty()) {
             return bookList;
         } else {
@@ -37,9 +35,9 @@ public class BookFunctions {
     }
 
 
-    public List<Book> searchLastTwoBooksFor(List<Book> bookList) {
+    public List<Book> searchLastTwoBooksStream(List<Book> bookList) {
 
-        return bookList.stream().skip(4).collect(Collectors.toList());
+        return bookList.stream().skip(8).collect(Collectors.toList());
 
        /* List<Book> tempList = new ArrayList<>();
         int size = bookList.size();
@@ -143,9 +141,10 @@ public class BookFunctions {
     }
 
     public double returnAvargeYearFor(List<Book> bookList) {
-        int sum = 0;
+        double sum = 0.0;
         for (Book book : bookList) {
-            sum =+ book.getYear();
+            sum = sum + book.getYear();
+
         }
         return sum / bookList.size();
     }
@@ -159,14 +158,36 @@ public class BookFunctions {
     }
 
 
+    public boolean returnBookBeforeSomeYearFor(List<Book> bookList) {
+        for (Book book : bookList) {
+            if (book.getYear() > 2003) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
     //ex10 for
     public List<Book> returnBooksWithSomeParameters(List<Book> bookList) {
         return bookList.stream().filter(x -> x.getTitle().startsWith("C") && x.getYear() > 2007).collect(Collectors.toList());
     }
 
+
+    public List<Book> returnBooksWithSomeParametersFor(List<Book> bookList) {
+        List<Book> tempList = new ArrayList<>();
+        for (Book book : bookList) {
+
+            if (book.getTitle().startsWith("C") && book.getYear() > 2007) {
+                tempList.add(book);
+            }
+        }
+        return tempList;
+    }
+
+
     //ex11
     public List<Book> addOneHundredYear(List<Book> bookList) {
-
         List<Book> newListBook = new ArrayList<>();
         for (Book book : bookList) {
             book.setYear(book.getYear() + 100);
@@ -174,6 +195,15 @@ public class BookFunctions {
         }
         return newListBook;
     }
+
+
+    public List<Book> addOneHundredYearFor(List<Book> bookList) {
+        List<Book> newListBook = new ArrayList<>();
+        //TODO:
+//        bookList.stream().map(x->newListBook.add(x.setYear(x.getYear()+100))) ????????
+        return newListBook;
+    }
+
 
     //ex12 Zwróć tytuły wszystkich książek, których rok jest podzielny przez 2.
 
@@ -190,6 +220,7 @@ public class BookFunctions {
     public List<String> returnTitlesBookDiverseByTwoStream(List<Book> bookList) {
         return bookList.stream().filter(x -> x.getYear() % 2 == 0).map(x -> x.getTitle()).collect(Collectors.toList());
     }
+
 
     //ex13 Zwróć mapę, która będzie miała klucz isbn i wartość obiekt Book (Map<String, Book>).
     public Map<Integer, Book> returnMap(List<Book> bookList) {
@@ -213,10 +244,7 @@ public class BookFunctions {
 
     public List<Book> sortBooksByYearASCFor(List<Book> bookList) {
         Collections.sort(bookList, (o1, o2) -> Integer.compare(o1.getYear(), o2.getYear()));
-
         return bookList;
-
-        //TODO: zrobić forem
     }
 
     //ex15 Podziel listę książek na 3 listy po 2 książki i zwróć z metody.
@@ -226,28 +254,15 @@ public class BookFunctions {
 
     public List<Book> sortBooksByYearDESCFor(List<Book> bookList) {
         Collections.sort(bookList, (o1, o2) -> Integer.compare(o2.getYear(), o1.getYear()));
-
         return bookList;
-
-        //TODO: zrobić forem
     }
 
     //ex16 Podziel listę książek na 3 listy po 2 książki i zwróć z metody.
 
     public List<List<Book>> listOfLists(List<Book> bookList) {
-        List<Book> temp = bookList.subList(0, 1);
-        List<Book> temp2 = bookList.subList(2, 3);
-        List<Book> temp3 = bookList.subList(4, 5);
-        List<Book> temp4 = bookList.subList(6, 7);
-        List<Book> temp5 = bookList.subList(8, 9);
-        List<List<Book>> resutList = new ArrayList<>();
-
-        resutList.add(temp);
-        resutList.add(temp2);
-        resutList.add(temp3);
-        resutList.add(temp4);
-        resutList.add(temp5);
-        return resutList;
+//        bookList.stream().map(x-> new ArrayList<Book>(2).add()).collect(Collectors.toList());
+        List<List<Book>> resultList = new ArrayList<>();
+        return resultList;
     }
 
 }

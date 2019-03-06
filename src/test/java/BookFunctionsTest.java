@@ -33,7 +33,7 @@ public class BookFunctionsTest {
         book7 = new Book(7, "Tytyuł 7", 516712, 2003, "T", null, null);
         book8 = new Book(8, "Tytyuł 8", 516713, 2003, "M", null, null);
         book9 = new Book(9, "Tytyuł 9", 516714, 2003, "T", null, null);
-        book9 = new Book(10, "Tytyuł 9", 516714, 2003, "T", null, null);
+        book10 = new Book(10, "Tytyuł 10", 516715, 2003, "T", null, null);
         listBooks.add(book1);
         listBooks.add(book2);
         listBooks.add(book3);
@@ -43,6 +43,7 @@ public class BookFunctionsTest {
         listBooks.add(book7);
         listBooks.add(book8);
         listBooks.add(book9);
+        listBooks.add(book10);
         bookFunctions = new BookFunctions();
     }
 
@@ -63,19 +64,19 @@ public class BookFunctionsTest {
     @Test
     void searchLastTwoBooks() {
 //        int id5 = listBooks.stream().map(x -> x.getId()).findFirst().get();
-        List<Book> tempBook = Arrays.asList(book8, book9);
+        List<Book> tempBook = Arrays.asList(book9, book10);
         assertEquals(tempBook, bookFunctions.searchLastTwoBooks(listBooks));
         assertEquals(tempBook, bookFunctions.searchLastTwoBooks(listBooks));
     }
 
     @Test
-    void searchLastTwoBooksFor() {
+    void searchLastTwoBooksStream() {
 //        int id5 = listBooks.stream().map(x -> x.getId()).findFirst().get();
-        List<Book> tempBook = Arrays.asList(book8, book9);
+        List<Book> tempBook = Arrays.asList(book9, book10);
         List<Book> nullList = Arrays.asList();
-        assertEquals(tempBook, bookFunctions.searchLastTwoBooks(listBooks));
-        assertEquals(tempBook, bookFunctions.searchLastTwoBooks(listBooks));
-        assertEquals(nullList, bookFunctions.searchLastTwoBooks(nullList));
+        assertEquals(tempBook, bookFunctions.searchLastTwoBooksStream(listBooks));
+        assertEquals(tempBook, bookFunctions.searchLastTwoBooksStream(listBooks));
+        assertEquals(nullList, bookFunctions.searchLastTwoBooksStream(nullList));
     }
 
     @Test
@@ -86,16 +87,17 @@ public class BookFunctionsTest {
 
     @Test
     void searchLastRelease() {
-//        assertEquals(book1, bookFunctions.searchLastRelease(listBooks));
-        assertEquals(book1, bookFunctions.searchLastReleaseStream(listBooks));
+        assertEquals(book5, bookFunctions.searchLastRelease(listBooks));
+        assertEquals(book5, bookFunctions.searchLastReleaseStream(listBooks));
     }
 
     @Test
     void sumOfYears() {
 //        assertEquals(book1.getYear() - book2.getYear(), bookFunctions.sumOfYears(listBooks));
-        assertEquals(18010, bookFunctions.sumOfYearsStream(listBooks));
+        assertEquals(20116, bookFunctions.sumOfYearsStream(listBooks));
     }
-//ex6
+
+    //ex6
     @Test
     void searchBooksAfterSomeYear() {
         List<Book> tempBook = Arrays.asList(book1, book5);
@@ -103,7 +105,7 @@ public class BookFunctionsTest {
     }
 
     @Test
-    void searchBooksAfterSomeYearFor(){
+    void searchBooksAfterSomeYearFor() {
         List<Book> tempBook = Arrays.asList(book1, book5);
         assertEquals(tempBook, bookFunctions.searchBooksAfterSomeYearFor(listBooks));
     }
@@ -118,28 +120,34 @@ public class BookFunctionsTest {
         assertEquals(false, bookFunctions.searchAllBooksAfterSomeYearFor(listBooks));
     }
 
+    //ex8
     @Test
     void returnAvargeYear() {
-        assertEquals(2012.5555, bookFunctions.returnAvargeYear(listBooks), 01);
+        assertEquals(2011.6, bookFunctions.returnAvargeYear(listBooks), 01);
+
     }
 
     @Test
-    void returnAvargeYearFor(){
-        assertEquals(2012.5555, bookFunctions.returnAvargeYearFor(listBooks), 01);
+    void returnAvargeYearFor() {
+        assertEquals(2011.6, bookFunctions.returnAvargeYearFor(listBooks), 1);
 
     }
-
+    //ex9
     @Test
     void returnBookBeforeSomeYear() {
         assertEquals(true, bookFunctions.returnBookBeforeSomeYear(listBooks));
+        assertEquals(true, bookFunctions.returnBookBeforeSomeYearFor(listBooks));
+
     }
 
+    //ex10
     @Test
     void returnBooksWithSomeParameters() {
         List<Book> tempBook = Arrays.asList(book1, book5);
-
         assertEquals(tempBook, bookFunctions.returnBooksWithSomeParameters(listBooks));
+        assertEquals(tempBook, bookFunctions.returnBooksWithSomeParametersFor(listBooks));
     }
+
 
     @Test
     void addOneHundredYear() {
@@ -166,6 +174,7 @@ public class BookFunctionsTest {
         someMap.put(516712, book7);
         someMap.put(516713, book8);
         someMap.put(516714, book9);
+        someMap.put(516715, book10);
 
         assertEquals(someMap, bookFunctions.returnMap(listBooks));
         assertEquals(someMap, bookFunctions.returnMapStream(listBooks));
