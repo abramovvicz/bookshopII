@@ -22,7 +22,9 @@ public class CategoryDAO {
         System.out.println("Succesfully added new category");
     }
 
-    private int generateCategoryID() { //TODO: trudne ze względu na potrzebę aktualizacji gdy user usunie kategorie itd.
+    private int generateCategoryID() {
+        //TODO: trudne ze względu na potrzebę aktualizacji gdy user usunie kategorie itd.
+        // może zrobić to na secie co nam zapewni, że id się nie będzie powtarzało??
         List<Integer> collect = categoryList.stream().map(x -> x.getCategoryID()).collect(Collectors.toList());
 
         int generatedID = 1;

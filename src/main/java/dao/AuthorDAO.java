@@ -36,6 +36,8 @@ public class AuthorDAO {
     }
 
     private int getAuthorsID() {  //TODO think about that
+        //TODO: trudne ze względu na potrzebę aktualizacji gdy user usunie kategorie itd.
+        // może zrobić to na secie co nam zapewni, że id się nie będzie powtarzało??
         List<Integer> collect = dataFromFiles.getListFromAuthorFile().stream().map(Author::getId).collect(Collectors.toList());
         int generatedID = 1;
         for (int i : collect) {

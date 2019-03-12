@@ -14,7 +14,7 @@ public class Author {
     private int age;
 
     public Author(int id, String fullName, int age) {
-        //TODO POMYSLEC NAD ID NA POZNIEJ
+        //TODO POMYSLEC NAD ID POZNIEJ
 //        this.id = counter++;
         this.id = id;
         this.fullName = fullName;

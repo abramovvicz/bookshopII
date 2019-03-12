@@ -52,7 +52,6 @@ public class UtilLoadFiles {
 
     public List<Category> loadCategoryFileNew(String nameFile) {
         boolean bufferStatus = false;
-
         BufferedReader bufferedReader = null;
         try {
             bufferedReader = new BufferedReader(new FileReader(nameFile));
@@ -62,7 +61,9 @@ public class UtilLoadFiles {
         }
         while (bufferStatus) {
             try {
-                if (!bufferedReader.ready()) break;
+                if (!bufferedReader.ready()) {
+                    break;
+                }
                 String[] dataFromFile = bufferedReader.readLine().split(";");
                 Category category = new Category(Integer.parseInt(dataFromFile[0]), dataFromFile[1], Integer.parseInt(dataFromFile[2]));
                 listFromCategoryFile.add(category);
@@ -87,7 +88,9 @@ public class UtilLoadFiles {
         }
         while (bufferStatus) {
             try {
-                if (!bufferedReader.ready()) break;
+                if (!bufferedReader.ready()) {
+                    break;
+                }
                 dataFromFile = bufferedReader.readLine().split(";");
                 Category category = getCategory(dataFromFile[6], dataFromFiles.getListFromCategoryFile());
                 List<Author> listAuthorsForBook = getAuthorListForBook(dataFromFile[5]);
