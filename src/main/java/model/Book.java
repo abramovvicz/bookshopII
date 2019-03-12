@@ -1,5 +1,6 @@
 package model;
 
+import enums.Binding;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -7,17 +8,17 @@ import java.util.List;
 
 @Getter
 @Setter
-public class Book  implements Comparable{
+public class Book implements Comparable<Book> {
 
     private int id;
-    private String binding;
+    private Binding binding;
     private List<Author> author;
     private Category category;
     private String title;
     private int isbn;
     private int year;
 
-    public Book(int id, String title, int isbn, int year, String binding, List<Author> author, Category category) {
+    public Book(int id, String title, int isbn, int year, Binding binding, List<Author> author, Category category) {
         this.id = id;
         this.binding = binding;
         this.author = author;
@@ -39,8 +40,9 @@ public class Book  implements Comparable{
     }
 
     @Override
-    public int compareTo(Object o) {
-        return 0;
+    public int compareTo(Book b) {
+        return this.year;
+
     }
 }
 

@@ -2,26 +2,30 @@ package model;
 
 
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
+@Setter
 public class Category {
     private static int counter = 1;
 
-    int categoryID;
-    String categoryName;
-    int showPriority;
+    private int categoryID;
+    private String categoryName;
+    private int priority;
 
-    public Category(int categoryID, String categoryName, int showPriority) {
-        this.categoryID = counter++;
+    public Category(int categoryID, String categoryName, int priority) {
+//        this.categoryID = counter++;
+        this.categoryID = categoryID;
         this.categoryName = categoryName;
-        this.showPriority = showPriority;
+        this.priority = priority;
     }
 
     @Override
     public String toString() {
         return categoryID + "\n" +
-//                "Id: " + id +
                 "Name Category: " + categoryName + "\n" +
-                "Priority: " + showPriority + "\n";
+                "Priority: " + priority + "\n";
     }
+
+
 }

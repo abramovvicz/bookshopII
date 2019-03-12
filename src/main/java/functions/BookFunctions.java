@@ -1,18 +1,25 @@
-package model;
+package functions;
+
+import enums.Binding;
+import model.Book;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class BookFunctions {
 
-    //ex1a
-    public Book searchBookByIsbn(int isbn, List<Book> bookList) {
-        return bookList.stream().filter(x -> x.getIsbn() == isbn).findAny().orElse(null);
 
+    //ex1a
+    public Optional<Book> searchBookByIsbnStream(int isbn, List<Book> bookList) {
+        Optional<Book> optional = bookList.stream().filter(x -> x.getIsbn() == isbn).findAny();
+        Book book = optional.orElse(new Book(1, "default", 11111, 2000, Binding.M,
+                null, null));
+        return Optional.of(book);
+        //TODO nie wiem czy dobrze użyłem i nie moge zrobić testu...
     }
 
     //ex1b
-    public Book searchBookByIsbn1(int isbn, List<Book> bookList) {
+    public Book searchBookByIsbnFor(int isbn, List<Book> bookList) {
         Book result = null;
         for (Book book : bookList) {
             if (book.getIsbn() == isbn) {
@@ -30,49 +37,39 @@ public class BookFunctions {
         } else {
             return bookList.subList(size - 2, size);
         }
-
-
     }
 
-
     public List<Book> searchLastTwoBooksStream(List<Book> bookList) {
-
-        return bookList.stream().skip(8).collect(Collectors.toList());
-
-       /* List<Book> tempList = new ArrayList<>();
-        int size = bookList.size();
-        for (int i = 0; i < bookList.size(); i++) {
-            if (bookList.indexOf(bookList.get(i)) == size && bookList.indexOf(bookList.get(i)) == size - 2) {
-                tempList.add(bookList.get(i));
-            }
+        if (bookList.isEmpty()) {
+            return bookList;
         }
-        return tempList;*/
+        return bookList.stream().skip(bookList.size() - 2).collect(Collectors.toList());
     }
 
     //ex3
 
     public Book searchFirstRelease(List<Book> bookList) {
-        int id = bookList.stream().map(x -> x.getYear()).sorted().findFirst().get();
-        Book result = null;
-        for (Book book : bookList) {
-            if (book.getYear() == id) {
-                result = book;
-            }
+        if (bookList.isEmpty()) {
+            return null;
         }
-        return result;
+        Collections.sort(bookList, Comparator.comparingInt(Book::getYear));
+        return bookList.get(0);
     }
 
     public Book searchFirstReleaseStream(List<Book> bookList) {
+        if (bookList.isEmpty()) {
+            return null;
+        }
         return bookList.stream().min(Comparator.comparingInt(x -> x.getYear())).get();
     }
 
     //ex4
     public Book searchLastRelease(List<Book> bookList) {
-        List<Integer> temp = bookList.stream().map(x -> x.getYear()).sorted().collect(Collectors.toList());
-        Collections.reverse(temp);
+        List<Integer> sortedReversedList = bookList.stream().map(x -> x.getYear()).sorted().collect(Collectors.toList());
+        Collections.reverse(sortedReversedList);
         Book result = null;
         for (Book book : bookList) {
-            if (book.getYear() == temp.get(0)) {
+            if (book.getYear() == sortedReversedList.get(0)) {
                 result = book;
             }
         }
@@ -84,11 +81,11 @@ public class BookFunctions {
     }
 
     //ex5
-    public int sumOfYears(List<Book> bookList) {
-        int min = bookList.stream().map(x -> x.getYear()).sorted().findFirst().get();
-        int max = bookList.stream().map(x -> x.getYear()).sorted(Collections.reverseOrder()).findFirst().get();
-        int result = max - min;
-        System.out.println(result);
+    public int sumOfYearsFor(List<Book> bookList) {
+        int result = 0;
+        for (Book book : bookList) {
+            result += book.getYear();
+        }
         return result;
     }
 
@@ -102,15 +99,14 @@ public class BookFunctions {
         return bookList.stream().filter(x -> x.getYear() > 2017).collect(Collectors.toList());
     }
 
-    public List<Book> searchBooksAfterSomeYearFor(List<Book> bookList) {
-        List<Book> resutlList = new ArrayList<>();
+    public List<Book> searchBooksAfter2017YearFor(List<Book> bookList) {
+        List<Book> resultList = new ArrayList<>();
         for (Book book : bookList) {
             if (book.getYear() > 2017) {
-                resutlList.add(book);
+                resultList.add(book);
             }
         }
-
-        return resutlList;
+        return resultList;
     }
 
 
@@ -120,30 +116,25 @@ public class BookFunctions {
     }
 
     public boolean searchAllBooksAfterSomeYearFor(List<Book> bookList) {
-        List<Book> resutlList = new ArrayList<>();
-
         for (Book book : bookList) {
-            if (book.getYear() > 2000) {
-                resutlList.add(book);
-                if (resutlList.size() == bookList.size()) {
-                    return true;
-                }
+            if (book.getYear() < 2000) {
+                return false;
             }
         }
-        return false;
+        return true;
     }
 
 
-    //ex 8 //todo: for
-    public double returnAvargeYear(List<Book> bookList) {
+    //ex 8
+    public double returnAverageYear(List<Book> bookList) {
 
         return bookList.stream().mapToInt(x -> x.getYear()).average().getAsDouble();
     }
 
-    public double returnAvargeYearFor(List<Book> bookList) {
+    public double returnAverageYearFor(List<Book> bookList) {
         double sum = 0.0;
         for (Book book : bookList) {
-            sum = sum + book.getYear();
+            sum += book.getYear();
 
         }
         return sum / bookList.size();
@@ -154,7 +145,13 @@ public class BookFunctions {
 
     public boolean returnBookBeforeSomeYear(List<Book> bookList) {
         return bookList.stream().anyMatch(x -> x.getYear() < 2003);
+    }
 
+
+    public List<Book> returnBookAfter2003(List<Book> bookList) {
+        List<Book> listBooksBefore2003 = bookList.stream().filter(x -> x.getYear() > 2003).collect(Collectors.toList());
+        System.out.println(listBooksBefore2003);
+        return listBooksBefore2003;
     }
 
 
@@ -175,14 +172,14 @@ public class BookFunctions {
 
 
     public List<Book> returnBooksWithSomeParametersFor(List<Book> bookList) {
-        List<Book> tempList = new ArrayList<>();
+        List<Book> bookWithSomeParameters = new ArrayList<>();
         for (Book book : bookList) {
 
             if (book.getTitle().startsWith("C") && book.getYear() > 2007) {
-                tempList.add(book);
+                bookWithSomeParameters.add(book);
             }
         }
-        return tempList;
+        return bookWithSomeParameters;
     }
 
 
@@ -199,8 +196,10 @@ public class BookFunctions {
 
     public List<Book> addOneHundredYearFor(List<Book> bookList) {
         List<Book> newListBook = new ArrayList<>();
-        //TODO:
-//        bookList.stream().map(x->newListBook.add(x.setYear(x.getYear()+100))) ????????
+
+        int finalInt = 100;
+//        bookList.stream().map(x->newListBook.add(new B);
+//        bookList.stream().map(book -> new Book(book.getId(), book.getTitle())) //TODO
         return newListBook;
     }
 
@@ -239,7 +238,9 @@ public class BookFunctions {
     //ex14 Posortuj książki po roku wydania zaczynając od wydanej najpóźniej.
 
     public List<Book> sortBooksByYearASC(List<Book> bookList) {
-        return bookList.stream().sorted(Comparator.comparing(Book::getYear)).collect(Collectors.toList());
+        List<Book> sortListOfBooksByYearASC = bookList.stream().sorted(Comparator.comparing(Book::getYear)).collect(Collectors.toList());
+        System.out.println(sortListOfBooksByYearASC);
+        return sortListOfBooksByYearASC;
     }
 
     public List<Book> sortBooksByYearASCFor(List<Book> bookList) {
@@ -247,9 +248,11 @@ public class BookFunctions {
         return bookList;
     }
 
-    //ex15 Podziel listę książek na 3 listy po 2 książki i zwróć z metody.
+    //ex15
     public List<Book> sortBooksByYearDESC(List<Book> bookList) {
-        return bookList.stream().sorted(Comparator.comparing(Book::getYear).reversed()).collect(Collectors.toList());
+        List<Book> sortListOfBooksByYearDESC = bookList.stream().sorted(Comparator.comparing(Book::getYear).reversed()).collect(Collectors.toList());
+        System.out.println(sortListOfBooksByYearDESC);
+        return sortListOfBooksByYearDESC;
     }
 
     public List<Book> sortBooksByYearDESCFor(List<Book> bookList) {
@@ -257,14 +260,17 @@ public class BookFunctions {
         return bookList;
     }
 
-    //ex16 Podziel listę książek na 3 listy po 2 książki i zwróć z metody.
-
-    public List<List<Book>> listOfLists(List<Book> bookList) {
-//        bookList.stream().map(x-> new ArrayList<Book>(2).add()).collect(Collectors.toList());
+    //ex16 Podziel listę książek na 3 list po 2 książki i zwróć z metody.
+    public List<List<Book>> listOfLists(List<Book> bookList, int number) {
         List<List<Book>> resultList = new ArrayList<>();
+        final int N = bookList.size();
+        if (bookList.size() % number == 0) {
+            for (int i = 0; i < N; i += 2) {
+                resultList.add(new ArrayList<>(bookList.subList(i, i + number < N ? i + number : N)));
+            }
+        }
         return resultList;
     }
-
 }
 
 

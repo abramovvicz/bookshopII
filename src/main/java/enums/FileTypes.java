@@ -1,4 +1,5 @@
-package model;
+package enums;
+
 
 public enum FileTypes {
     BOOKS("books.csv"), AUTHORS("authors.csv"), CATEGORIES("categories.csv");

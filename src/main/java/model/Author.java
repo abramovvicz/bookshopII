@@ -9,12 +9,14 @@ import lombok.Setter;
 public class Author {
 
     private static int counter = 1;
-    int id;
-    String fullName;
-    int age;
+    private int id;
+    private String fullName;
+    private int age;
 
     public Author(int id, String fullName, int age) {
-        this.id = counter++;
+        //TODO POMYSLEC NAD ID NA POZNIEJ
+//        this.id = counter++;
+        this.id = id;
         this.fullName = fullName;
         this.age = age;
     }
