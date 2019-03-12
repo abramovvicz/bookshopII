@@ -142,6 +142,7 @@ public class BookFunctionsTest {
     @Test
     void addOneHundredYear() {
         assertEquals(listBooks.get(4), bookFunctions.addOneHundredYear(listBooks).get(4));
+        assertEquals(listBooks.get(4), bookFunctions.addOneHundredYearStream(listBooks).get(4));
     }
 
     @Test

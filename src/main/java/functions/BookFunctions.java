@@ -194,18 +194,14 @@ public class BookFunctions {
     }
 
 
-    public List<Book> addOneHundredYearFor(List<Book> bookList) {
-        List<Book> newListBook = new ArrayList<>();
-
-        int finalInt = 100;
-//        bookList.stream().map(x->newListBook.add(new B);
-//        bookList.stream().map(book -> new Book(book.getId(), book.getTitle())) //TODO
-        return newListBook;
+    public List<Book> addOneHundredYearStream(List<Book> bookList) {
+        return bookList.stream().peek(book -> new Book(book.getId(), book.getTitle(), book.getIsbn(),
+                book.getYear(), book.getBinding(), book.getAuthor(), book.getCategory()))
+                .peek(book -> book.setYear(book.getYear() + 100)).collect(Collectors.toList());
     }
 
 
     //ex12 Zwróć tytuły wszystkich książek, których rok jest podzielny przez 2.
-
     public List<String> returnTitlesBookDiverseByTwo(List<Book> bookList) {
         List<String> list = new ArrayList<>();
         for (Book book : bookList) {
