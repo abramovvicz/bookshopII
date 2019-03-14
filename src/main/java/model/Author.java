@@ -13,7 +13,6 @@ public class Author {
     private int age;
 
     public Author(int id, String fullName, int age) {
-        //TODO POMYSLEC NAD ID POZNIEJ
         this.id = id;
         this.fullName = fullName;
         this.age = age;

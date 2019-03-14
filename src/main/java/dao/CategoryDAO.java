@@ -5,27 +5,30 @@ import utils.UserInput;
 
 import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class CategoryDAO {
 
     private DataFromFiles dataFromFiles = DataFromFiles.getInstance();
-    private List<Category> categoryList = dataFromFiles.getListFromCategoryFile();
     private UserInput userInput = new UserInput();
 
+
+    public void addCategoryToList(int id, String name, int priority) {
+        Category category = new Category(id, name, priority);
+        dataFromFiles.getListFromCategoryFile().add(category);
+        System.out.println("Succesfully added new category");
+    }
 
     public void getDataFromUserAboutNewCategory() {
         String categoryName = getCategoryName();
         int categoryPriority = getCategoryPriority();
         int id = generateCategoryID();
-        Category category = new Category(id, categoryName, categoryPriority);
-        categoryList.add(category);
-        System.out.println("Succesfully added new category");
+        addCategoryToList(id, categoryName, categoryPriority);
     }
 
     private int generateCategoryID() {
-        Category categoryMaxID = categoryList.stream().max(Comparator.comparingInt(Category::getCategoryID)).get();
-        return  categoryMaxID.getCategoryID()+1;
+        Category categoryOfMaxID = dataFromFiles.getListFromCategoryFile().stream().max(Comparator.comparingInt(Category::getCategoryID)).get();
+        return categoryOfMaxID.getCategoryID() + 1;
+
     }
 
     private int getCategoryPriority() {
@@ -49,12 +52,8 @@ public class CategoryDAO {
 
     public void getCategoryIdFromUser() {
         int categoryByUserID = userInput.getNumberFromUser("Chose ID Category to edit");
-        for(Category category: dataFromFiles.getListFromCategoryFile())
-        {
-            System.out.println("category ID: " + category.getCategoryID());
-            System.out.println("chosen by user ID:" + categoryByUserID);
-            while (categoryByUserID!=category.getCategoryID())
-            {
+        for (Category category : dataFromFiles.getListFromCategoryFile()) {
+            while (categoryByUserID != category.getCategoryID()) {
                 System.out.print("Category ID invalid, please chose another ID");
                 categoryByUserID = userInput.getNumberFromUser("");
             }
