@@ -25,6 +25,9 @@ public class UtilLoadFiles {
     public List<Author> loadAuthorFileNew(String nameFile) {
         boolean bufferStatus = false;
         BufferedReader bufferedReader = null;
+        String sCurrentLine;
+
+      
         try {
             bufferedReader = new BufferedReader(new FileReader(nameFile));
             bufferStatus = true;
