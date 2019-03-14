@@ -68,8 +68,6 @@ public class LoadFilesMethodTest {
         bookTestList.add(book5);
         bookTestList.add(book6);
 
-//        listFromAuthorFile = utilLoadFiles.loadAuthorFileNew("authorsTestFile.csv"); //TODO  nie trzeba aldowac kategorii i autorow
-//        listFromCategoryList = utilLoadFiles.loadCategoryFileNew("categoriesTestFile.csv");
         listFromBookFile = utilLoadFiles.loadBookFileNew("booksTestFile.csv");
         assertEquals(listFromBookFile.get(1).getTitle(), bookTestList.get(1).getTitle());
         assertEquals(listFromBookFile.get(1).getIsbn(), bookTestList.get(1).getIsbn());

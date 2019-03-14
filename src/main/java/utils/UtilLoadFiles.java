@@ -80,6 +80,8 @@ public class UtilLoadFiles {
         boolean bufferStatus = false;
         String[] dataFromFile;
         BufferedReader bufferedReader = null;
+        Category category;
+        List<Author> listAuthorsForBook;
         try {
             bufferedReader = new BufferedReader(new FileReader(nameFile));
             bufferStatus = true;
@@ -92,10 +94,17 @@ public class UtilLoadFiles {
                     break;
                 }
                 dataFromFile = bufferedReader.readLine().split(";");
-                Category category = getCategory(dataFromFile[6], dataFromFiles.getListFromCategoryFile());
-                List<Author> listAuthorsForBook = getAuthorListForBook(dataFromFile[5]);
+
+                if (dataFromFile.length == 5) {
+                    category = null;
+                    listAuthorsForBook = null;
+                } else {
+                    category = getCategory(dataFromFile[6], dataFromFiles.getListFromCategoryFile());
+                    listAuthorsForBook = getAuthorListForBook(dataFromFile[5]);
+                }
                 Book book = new Book(Integer.parseInt(dataFromFile[0])
-                        , dataFromFile[1], Integer.parseInt(dataFromFile[2]), Integer.parseInt(dataFromFile[3]), Binding.valueOf(dataFromFile[4]), listAuthorsForBook, category);
+                        , dataFromFile[1], Integer.parseInt(dataFromFile[2]), Integer.parseInt(dataFromFile[3]),
+                        Binding.valueOf(dataFromFile[4]), listAuthorsForBook, category);
                 listFromBookFile.add(book);
                 dataFromFiles.setListFromBookFile(listFromBookFile);
             } catch (IOException e) {
