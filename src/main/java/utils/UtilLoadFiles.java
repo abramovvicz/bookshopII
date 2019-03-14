@@ -21,81 +21,53 @@ public class UtilLoadFiles {
     public static List<Category> listFromCategoryFile = new ArrayList<>();
     public DataFromFiles dataFromFiles = DataFromFiles.getInstance();
 
-
     public List<Author> loadAuthorFileNew(String nameFile) {
-        boolean bufferStatus = false;
         BufferedReader bufferedReader = null;
-        String sCurrentLine;
-
-      
         try {
             bufferedReader = new BufferedReader(new FileReader(nameFile));
-            bufferStatus = true;
-        } catch (FileNotFoundException e) {
-            System.out.println("File load failure");
-
-        }
-        while (bufferStatus) {   //TODO czy to o chodziło? // pomyslec czy da sie inaczej niz while(true)
-            try {
-                if (!bufferedReader.ready()) {
-                    break;
-                }
+            while (bufferedReader.ready()) {
                 String[] dataFromFile = bufferedReader.readLine().split(";");
                 Author author = new Author(Integer.parseInt(dataFromFile[0]), dataFromFile[1], Integer.parseInt(dataFromFile[2]));
                 listFromAuthorFile.add(author);
                 dataFromFiles.setListFromAuthorFile(listFromAuthorFile);
-            } catch (IOException e) {
-                System.out.println("File load failure");
             }
+        } catch (FileNotFoundException e) {
+            System.out.println("File load failure");
+
+        } catch (IOException e) {
+            System.out.println("Buffer isnt ready");
 
         }
         return listFromAuthorFile;
     }
 
-
     public List<Category> loadCategoryFileNew(String nameFile) {
-        boolean bufferStatus = false;
         BufferedReader bufferedReader = null;
         try {
             bufferedReader = new BufferedReader(new FileReader(nameFile));
-            bufferStatus = true;
-        } catch (FileNotFoundException e) {
-            System.out.println("File not exists");
-        }
-        while (bufferStatus) {
-            try {
-                if (!bufferedReader.ready()) {
-                    break;
-                }
+            while (bufferedReader.ready()) {
                 String[] dataFromFile = bufferedReader.readLine().split(";");
                 Category category = new Category(Integer.parseInt(dataFromFile[0]), dataFromFile[1], Integer.parseInt(dataFromFile[2]));
                 listFromCategoryFile.add(category);
                 dataFromFiles.setListFromCategoryFile(listFromCategoryFile);
-            } catch (IOException e) {
-                System.out.println("File not exists");
             }
+        } catch (FileNotFoundException e) {
+            System.out.println("File not exists");
+        } catch (IOException e) {
+            System.out.println("Buffer isnt ready");
 
         }
         return listFromCategoryFile;
     }
 
     public List<Book> loadBookFileNew(String nameFile) {
-        boolean bufferStatus = false;
         String[] dataFromFile;
         BufferedReader bufferedReader = null;
         Category category;
         List<Author> listAuthorsForBook;
         try {
             bufferedReader = new BufferedReader(new FileReader(nameFile));
-            bufferStatus = true;
-        } catch (FileNotFoundException e) {
-            System.out.println("File not exists");
-        }
-        while (bufferStatus) {
-            try {
-                if (!bufferedReader.ready()) {
-                    break;
-                }
+            while (bufferedReader.ready()) {
                 dataFromFile = bufferedReader.readLine().split(";");
 
                 if (dataFromFile.length == 5) {
@@ -110,13 +82,14 @@ public class UtilLoadFiles {
                         Binding.valueOf(dataFromFile[4]), listAuthorsForBook, category);
                 listFromBookFile.add(book);
                 dataFromFiles.setListFromBookFile(listFromBookFile);
-            } catch (IOException e) {
-                System.out.println("Buffer is not ready");
-
             }
+        } catch (FileNotFoundException e) {
+            System.out.println("File not exists");
+        } catch (IOException e1) {
+            System.out.println("Buffer isnt ready");
+
         }
         return listFromBookFile;
-
     }
 
     private Category getCategory(String categoriesIDS, List<Category> listFromCategoryFile) {
