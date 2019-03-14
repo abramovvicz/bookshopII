@@ -34,14 +34,15 @@ public class BookFunctionsTest {
 
     @Test
     void searchBookByIsbnStream() {
-        assertFalse(listBooks.get(0), bookFunctions.searchBookByIsbnStream(12345, listBooks).isPresent());
-        assertEquals(book, bookFunctions.searchBookByIsbnStream(12323445, listBooks));
-        assertEquals(book, bookFunctions.searchBookByIsbnStream(345, listBooks));
+        assertEquals(listBooks.get(0), bookFunctions.searchBookByIsbnStream(12345, listBooks).get());
+        assertFalse(bookFunctions.searchBookByIsbnStream(12323445, listBooks).isPresent());
+        assertFalse(bookFunctions.searchBookByIsbnStream(345, listBooks).isPresent());
     }
 
     @Test
     void searchBookByIsbnFor() {
         assertEquals(listBooks.get(0), bookFunctions.searchBookByIsbnFor(12345, listBooks));
+        assertEquals(listBooks.get(0),bookFunctions.searchBookByIsbnStream(12345, listBooks).get());
         assertNull(bookFunctions.searchBookByIsbnFor(1245, listBooks));
         assertNull(bookFunctions.searchBookByIsbnFor(12243345, listBooks));
     }
@@ -53,7 +54,6 @@ public class BookFunctionsTest {
         assertEquals(tempBook, bookFunctions.searchLastTwoBooks(listBooks));
         assertEquals(tempBook, bookFunctions.searchLastTwoBooks(listBooks));
         assertEquals(nullList, bookFunctions.searchLastTwoBooksStream(nullList));
-
     }
 
     @Test
@@ -111,13 +111,13 @@ public class BookFunctionsTest {
     //ex8
     @Test
     void returnAverageYear() {
-        assertEquals(2011.6, bookFunctions.returnAverageYear(listBooks), 1);
+        assertEquals(2017.33, bookFunctions.returnAverageYear(listBooks), 1);
 
     }
 
     @Test
     void returnAverageYearFor() {
-        assertEquals(2011.6, bookFunctions.returnAverageYearFor(listBooks), 1);
+        assertEquals(2017.33, bookFunctions.returnAverageYearFor(listBooks), 1);
 
     }
 
@@ -126,6 +126,7 @@ public class BookFunctionsTest {
     void returnBookBeforeSomeYear() {
         assertTrue(bookFunctions.returnBookBeforeSomeYear(listBooks));
         assertTrue(bookFunctions.returnBookBeforeSomeYearFor(listBooks));
+
 
     }
 
