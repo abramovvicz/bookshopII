@@ -8,14 +8,12 @@ import lombok.Setter;
 @Setter
 public class Author {
 
-    private static int counter = 1;
     private int id;
     private String fullName;
     private int age;
 
     public Author(int id, String fullName, int age) {
         //TODO POMYSLEC NAD ID POZNIEJ
-//        this.id = counter++;
         this.id = id;
         this.fullName = fullName;
         this.age = age;

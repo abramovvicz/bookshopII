@@ -5,8 +5,8 @@ import utils.UserInput;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class AuthorDAO {
 
@@ -20,6 +20,8 @@ public class AuthorDAO {
         int age = getAuthorAgeFromUser();
         int id = getAuthorsID();
         addAuthorToList(id, name, age);
+        System.out.println("Succesfully added new author");
+
     }
 
     private int getAuthorAgeFromUser() {
@@ -35,17 +37,9 @@ public class AuthorDAO {
         return userInput.getStringFormUser("Enter Author name");
     }
 
-    private int getAuthorsID() {  //TODO think about that
-        //TODO: trudne ze względu na potrzebę aktualizacji gdy user usunie kategorie itd.
-        // może zrobić to na secie co nam zapewni, że id się nie będzie powtarzało??
-        List<Integer> collect = dataFromFiles.getListFromAuthorFile().stream().map(Author::getId).collect(Collectors.toList());
-        int generatedID = 1;
-        for (int i : collect) {
-            if (i == collect.get(collect.size() - 1)) {
-                generatedID += i;
-            }
-        }
-        return generatedID;
+    private int getAuthorsID() {
+        Author authorWithMaxId = dataFromFiles.getListFromAuthorFile().stream().max(Comparator.comparingInt(x -> x.getId())).get();
+        return authorWithMaxId.getId() + 1;
     }
 
     private void addAuthorToList(int id, String name, int age) {

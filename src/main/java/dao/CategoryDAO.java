@@ -3,6 +3,7 @@ package dao;
 import model.Category;
 import utils.UserInput;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,19 +24,8 @@ public class CategoryDAO {
     }
 
     private int generateCategoryID() {
-        //TODO: trudne ze względu na potrzebę aktualizacji gdy user usunie kategorie itd.
-        // może zrobić to na secie co nam zapewni, że id się nie będzie powtarzało??
-        List<Integer> collect = categoryList.stream().map(x -> x.getCategoryID()).collect(Collectors.toList());
-
-        int generatedID = 1;
-        for (int i : collect) {
-            if (i == collect.get(collect.size() - 1)) {
-                generatedID +=i;
-            }
-        }
-        System.out.println("id category is: " + generatedID);
-        return generatedID;
-
+        Category categoryMaxID = categoryList.stream().max(Comparator.comparingInt(Category::getCategoryID)).get();
+        return  categoryMaxID.getCategoryID()+1;
     }
 
     private int getCategoryPriority() {
