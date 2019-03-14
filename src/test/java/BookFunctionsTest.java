@@ -34,8 +34,7 @@ public class BookFunctionsTest {
 
     @Test
     void searchBookByIsbnStream() {
-        Optional book = Optional.of(new Book(1, "default", 11111, 2000, Binding.M, null, null));
-        assertEquals(listBooks.get(0), bookFunctions.searchBookByIsbnStream(12345, listBooks));
+        assertFalse(listBooks.get(0), bookFunctions.searchBookByIsbnStream(12345, listBooks).isPresent());
         assertEquals(book, bookFunctions.searchBookByIsbnStream(12323445, listBooks));
         assertEquals(book, bookFunctions.searchBookByIsbnStream(345, listBooks));
     }

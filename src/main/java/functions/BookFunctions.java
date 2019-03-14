@@ -1,6 +1,5 @@
 package functions;
 
-import enums.Binding;
 import model.Book;
 
 import java.util.*;
@@ -11,12 +10,8 @@ public class BookFunctions {
 
     //ex1a
     public Optional<Book> searchBookByIsbnStream(int isbn, List<Book> bookList) {
-        Optional<Book> optional = bookList.stream().filter(x -> x.getIsbn() == isbn).findAny();
-        Book book = optional.orElse(new Book(1, "default", 11111, 2000, Binding.M,
-                null, null));
-        return Optional.of(book);
-        //TODO nie wiem czy dobrze użyłem i nie moge zrobić testu...
-    }
+        return bookList.stream().filter(x -> x.getIsbn() == isbn).findAny();
+        }
 
     //ex1b
     public Book searchBookByIsbnFor(int isbn, List<Book> bookList) {
