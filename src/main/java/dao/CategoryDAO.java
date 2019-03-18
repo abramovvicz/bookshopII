@@ -14,7 +14,7 @@ public class CategoryDAO {
     public void addCategoryToList(int id, String name, int priority) {
         Category category = new Category(id, name, priority);
         dataFromFiles.getListFromCategoryFile().add(category);
-        System.out.println("Succesfully added new category");
+        System.out.println("Successfully added new category");
     }
 
     public void getDataFromUserAboutNewCategory() {
@@ -25,6 +25,9 @@ public class CategoryDAO {
     }
 
     private int generateCategoryID() {
+        if (dataFromFiles.getListFromCategoryFile().isEmpty()) {
+            return 1;
+        }
         Category categoryOfMaxID = dataFromFiles.getListFromCategoryFile().stream().max(Comparator.comparingInt(Category::getCategoryID)).get();
         return categoryOfMaxID.getCategoryID() + 1;
 
@@ -52,8 +55,9 @@ public class CategoryDAO {
     public void getCategoryIdFromUser() {
         int categoryByUserID = userInput.getNumberFromUser("Chose ID Category to edit");
         for (Category category : dataFromFiles.getListFromCategoryFile()) {
-            System.out.println("getCatgoryID " + category.getCategoryID());
-            while (categoryByUserID != category.getCategoryID()) {
+            System.out.println("getCategoryID " + category.getCategoryID());
+            System.out.println("categoryByUserID " + categoryByUserID);
+            while (category.getCategoryID() != categoryByUserID) {
                 System.out.print("Category ID invalid, please chose another ID");
                 categoryByUserID = userInput.getNumberFromUser("");
             }

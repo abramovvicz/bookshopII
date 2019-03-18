@@ -7,7 +7,6 @@ import model.Book;
 import model.Category;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -34,7 +33,7 @@ public class UtilLoadFiles {
             }
             bufferedReader.close();
         } catch (IOException e) {
-            System.out.println("Buffer isn`t ready");
+            System.out.println("File load failure. File not exists");
 
         }
         return listFromAuthorFile;
@@ -51,8 +50,6 @@ public class UtilLoadFiles {
                 dataFromFiles.setListFromCategoryFile(listFromCategoryFile);
             }
             bufferedReader.close();
-        } catch (FileNotFoundException e) {
-            System.out.println("File load failure. File not exists");
         } catch (IOException e) {
             System.out.println("Buffer isnt ready");
 
@@ -64,13 +61,13 @@ public class UtilLoadFiles {
         String[] dataFromFile;
         BufferedReader bufferedReader = null;
         Category category;
-        List<Author> listAuthorsForBook;
+        List<Author> listAuthorsForBook = new ArrayList<>();
         try {
             bufferedReader = new BufferedReader(new FileReader(nameFile));
             while (bufferedReader.ready()) {
                 dataFromFile = bufferedReader.readLine().split(splitter);
 
-                if (dataFromFile.length == 5) {
+                if (dataFromFiles.getListFromAuthorFile().isEmpty() || dataFromFile.length == 5) {
                     category = null;
                     listAuthorsForBook = null;
                 } else {
@@ -84,10 +81,8 @@ public class UtilLoadFiles {
                 dataFromFiles.setListFromBookFile(listFromBookFile);
             }
             bufferedReader.close();
-        } catch (FileNotFoundException e) {
+        } catch (IOException e) {
             System.out.println("File load failure. File not exists");
-        } catch (IOException e1) {
-            System.out.println("Buffer isnt ready");
 
         }
         return listFromBookFile;
@@ -101,6 +96,9 @@ public class UtilLoadFiles {
         String[] idsAuthors = authors.split(",");
         List<Author> listAuthorsForBook = new ArrayList<>();
 
+        if (idsAuthors.length == 0) {
+            System.out.println("nie ma autorów");
+        }
         for (String idsAuthor : idsAuthors) {
             listAuthorsForBook.add(dataFromFiles.getListFromAuthorFile()
                     .stream().filter(x -> x.getId() == Integer.valueOf(idsAuthor))

@@ -19,14 +19,14 @@ public class AuthorDAO {
         int age = getAuthorAgeFromUser();
         int id = getAuthorsID();
         addAuthorToList(id, name, age);
-        System.out.println("Succesfully added new author");
+        System.out.println("Successfully added new author");
 
     }
 
     private int getAuthorAgeFromUser() {
         int numberFromUser = userInput.getNumberFromUser("Enter Authors age");
         while (numberFromUser < 0 || numberFromUser > 120) {
-            System.out.println("Please enter vailid data form 1 to 120");
+            System.out.println("Please enter valid data form 1 to 120");
             numberFromUser = userInput.getNumberFromUser("Enter Authors age");
         }
         return numberFromUser;
@@ -37,14 +37,18 @@ public class AuthorDAO {
     }
 
     private int getAuthorsID() {
-        Author authorWithMaxId = dataFromFiles.getListFromAuthorFile().stream().max(Comparator.comparingInt(x -> x.getId())).get();
+        if (dataFromFiles.getListFromAuthorFile().isEmpty()) {
+            return 1;
+        }
+        Author authorWithMaxId = dataFromFiles.getListFromAuthorFile().stream()
+                .max(Comparator.comparingInt(x -> x.getId())).get();
         return authorWithMaxId.getId() + 1;
     }
 
     private void addAuthorToList(int id, String name, int age) {
         Author author = new Author(id, name, age);
         dataFromFiles.getListFromAuthorFile().add(author);
-        System.out.println("Author succesfull added to database");
+        System.out.println("Author successfully added to database");
     }
 
     public void saveAuthorListToFile(List<Author> listOFAuthors) {
