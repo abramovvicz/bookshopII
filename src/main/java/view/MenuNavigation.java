@@ -21,9 +21,9 @@ public class MenuNavigation {
     private Menu menu = new Menu();
 
     public MenuNavigation() {
-        utilLoadFiles.loadAuthorFileNew(FileTypes.AUTHORS.getFileAdress());
-        utilLoadFiles.loadCategoryFileNew(FileTypes.CATEGORIES.getFileAdress());
-        utilLoadFiles.loadBookFileNew(FileTypes.BOOKS.getFileAdress());
+        utilLoadFiles.loadAuthorFileNew(FileTypes.AUTHORS.getFileAddress());
+        utilLoadFiles.loadCategoryFileNew(FileTypes.CATEGORIES.getFileAddress());
+        utilLoadFiles.loadBookFileNew(FileTypes.BOOKS.getFileAddress());
     }
 
     public void menuNavigation() {

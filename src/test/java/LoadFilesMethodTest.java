@@ -38,7 +38,7 @@ public class LoadFilesMethodTest {
         authorTestList.add(author2);
 
         authorDAO.saveAuthorListToFile(authorTestList);
-        listFromAuthorFile = utilLoadFiles.loadAuthorFileNew("authorsTestFile.csv");
+        listFromAuthorFile = utilLoadFiles.loadAuthorFileNew("src/test/resources/authorsTestFile.csv");
         author1 = listFromAuthorFile.get(0);
         author2 = listFromAuthorFile.get(1);
 
@@ -68,7 +68,7 @@ public class LoadFilesMethodTest {
         bookTestList.add(book5);
         bookTestList.add(book6);
 
-        listFromBookFile = utilLoadFiles.loadBookFileNew("booksTestFile.csv");
+        listFromBookFile = utilLoadFiles.loadBookFileNew("src/test/resources/booksTestFile.csv");
         assertEquals(listFromBookFile.get(1).getTitle(), bookTestList.get(1).getTitle());
         assertEquals(listFromBookFile.get(1).getIsbn(), bookTestList.get(1).getIsbn());
 
@@ -84,7 +84,7 @@ public class LoadFilesMethodTest {
         categoryTestList.add(category1);
         categoryTestList.add(category2);
         categoryTestList.add(category3);
-        listFromCategoryList = utilLoadFiles.loadCategoryFileNew("categoriesTestFile.csv");
+        listFromCategoryList = utilLoadFiles.loadCategoryFileNew("src/test/resources/categoriesTestFile.csv");
         assertEquals(listFromCategoryList.get(0).getCategoryID(), categoryTestList.get(0).getCategoryID());
         assertEquals(listFromCategoryList.get(1).getCategoryName(), categoryTestList.get(1).getCategoryName());
         assertEquals(listFromCategoryList.get(2).getPriority(), categoryTestList.get(2).getPriority());

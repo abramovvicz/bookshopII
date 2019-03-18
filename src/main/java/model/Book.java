@@ -8,7 +8,7 @@ import java.util.List;
 
 @Getter
 @Setter
-public class Book implements Comparable<Book> {
+public class Book {
 
     private int id;
     private Binding binding;
@@ -39,11 +39,7 @@ public class Book implements Comparable<Book> {
                 "YEAR: " + year + "\n" + "\n";
     }
 
-    @Override
-    public int compareTo(Book b) {
-        return this.year;
 
-    }
 }
 
 

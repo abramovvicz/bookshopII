@@ -4,7 +4,6 @@ import model.Category;
 import utils.UserInput;
 
 import java.util.Comparator;
-import java.util.List;
 
 public class CategoryDAO {
 
@@ -53,6 +52,7 @@ public class CategoryDAO {
     public void getCategoryIdFromUser() {
         int categoryByUserID = userInput.getNumberFromUser("Chose ID Category to edit");
         for (Category category : dataFromFiles.getListFromCategoryFile()) {
+            System.out.println("getCatgoryID " + category.getCategoryID());
             while (categoryByUserID != category.getCategoryID()) {
                 System.out.print("Category ID invalid, please chose another ID");
                 categoryByUserID = userInput.getNumberFromUser("");
@@ -63,13 +63,12 @@ public class CategoryDAO {
     }
 
 
-    private List<Category> editCategoryByUser(int categoryIdByUser, String nameCategoryByUser) {
+    private void editCategoryByUser(int categoryIdByUser, String nameCategoryByUser) {
         for (Category category : dataFromFiles.getListFromCategoryFile()) {
             if (category.getCategoryID() == categoryIdByUser) {
-                int i = dataFromFiles.getListFromCategoryFile().indexOf(category);
-                dataFromFiles.getListFromCategoryFile().get(i).setCategoryName(nameCategoryByUser);
+                int categoryIndexOf = dataFromFiles.getListFromCategoryFile().indexOf(category);
+                dataFromFiles.getListFromCategoryFile().get(categoryIndexOf).setCategoryName(nameCategoryByUser);
             }
         }
-        return dataFromFiles.getListFromCategoryFile();
     }
 }

@@ -11,7 +11,7 @@ public class BookFunctions {
     //ex1a
     public Optional<Book> searchBookByIsbnStream(int isbn, List<Book> bookList) {
         return bookList.stream().filter(x -> x.getIsbn() == isbn).findAny();
-        }
+    }
 
     //ex1b
     public Book searchBookByIsbnFor(int isbn, List<Book> bookList) {
@@ -47,7 +47,7 @@ public class BookFunctions {
         if (bookList.isEmpty()) {
             return null;
         }
-        Collections.sort(bookList, Comparator.comparingInt(Book::getYear));
+        bookList.sort(Comparator.comparingInt(Book::getYear));
         return bookList.get(0);
     }
 
@@ -143,10 +143,9 @@ public class BookFunctions {
     }
 
 
-    public List<Book> returnBookAfter2003(List<Book> bookList) {
+    public void returnBookAfter2003(List<Book> bookList) {
         List<Book> listBooksBefore2003 = bookList.stream().filter(x -> x.getYear() > 2003).collect(Collectors.toList());
         System.out.println(listBooksBefore2003);
-        return listBooksBefore2003;
     }
 
 

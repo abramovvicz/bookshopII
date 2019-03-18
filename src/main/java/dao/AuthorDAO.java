@@ -12,7 +12,6 @@ public class AuthorDAO {
 
     private DataFromFiles dataFromFiles = DataFromFiles.getInstance();
     private UserInput userInput = new UserInput();
-    private FileWriter fileWriter;
 
 
     public void getDataFromUserAboutNewAuthor() {
@@ -49,15 +48,16 @@ public class AuthorDAO {
     }
 
     public void saveAuthorListToFile(List<Author> listOFAuthors) {
+        FileWriter fileWriter;
         try {
-            fileWriter = new FileWriter("newAuthors.csv");
+            fileWriter = new FileWriter("src/main/resources/newAuthors.csv");
             for (Author listOFAuthor : listOFAuthors) {
-                StringBuilder stringBuilder = new StringBuilder();
-                stringBuilder.append(listOFAuthor.getId() + ";" + listOFAuthor.getFullName() + ";" + listOFAuthor.getAge());
-                fileWriter.write(stringBuilder.toString());
+                String pattern = listOFAuthor.getId() + ";" + listOFAuthor.getFullName() + ";" + listOFAuthor.getAge();
+                fileWriter.write(pattern);
                 fileWriter.write("\n");
 
             }
+            System.out.println("Successfully saved");
             fileWriter.close();
         } catch (IOException e) {
             System.out.println("There was some problem");

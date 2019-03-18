@@ -20,22 +20,21 @@ public class UtilLoadFiles {
     public static List<Author> listFromAuthorFile = new ArrayList<>();
     public static List<Category> listFromCategoryFile = new ArrayList<>();
     public DataFromFiles dataFromFiles = DataFromFiles.getInstance();
+    private String splitter = ";";
 
     public List<Author> loadAuthorFileNew(String nameFile) {
         BufferedReader bufferedReader = null;
         try {
             bufferedReader = new BufferedReader(new FileReader(nameFile));
             while (bufferedReader.ready()) {
-                String[] dataFromFile = bufferedReader.readLine().split(";");
+                String[] dataFromFile = bufferedReader.readLine().split(splitter);
                 Author author = new Author(Integer.parseInt(dataFromFile[0]), dataFromFile[1], Integer.parseInt(dataFromFile[2]));
                 listFromAuthorFile.add(author);
                 dataFromFiles.setListFromAuthorFile(listFromAuthorFile);
             }
-        } catch (FileNotFoundException e) {
-            System.out.println("File load failure");
-
+            bufferedReader.close();
         } catch (IOException e) {
-            System.out.println("Buffer isnt ready");
+            System.out.println("Buffer isn`t ready");
 
         }
         return listFromAuthorFile;
@@ -46,13 +45,14 @@ public class UtilLoadFiles {
         try {
             bufferedReader = new BufferedReader(new FileReader(nameFile));
             while (bufferedReader.ready()) {
-                String[] dataFromFile = bufferedReader.readLine().split(";");
+                String[] dataFromFile = bufferedReader.readLine().split(splitter);
                 Category category = new Category(Integer.parseInt(dataFromFile[0]), dataFromFile[1], Integer.parseInt(dataFromFile[2]));
                 listFromCategoryFile.add(category);
                 dataFromFiles.setListFromCategoryFile(listFromCategoryFile);
             }
+            bufferedReader.close();
         } catch (FileNotFoundException e) {
-            System.out.println("File not exists");
+            System.out.println("File load failure. File not exists");
         } catch (IOException e) {
             System.out.println("Buffer isnt ready");
 
@@ -68,7 +68,7 @@ public class UtilLoadFiles {
         try {
             bufferedReader = new BufferedReader(new FileReader(nameFile));
             while (bufferedReader.ready()) {
-                dataFromFile = bufferedReader.readLine().split(";");
+                dataFromFile = bufferedReader.readLine().split(splitter);
 
                 if (dataFromFile.length == 5) {
                     category = null;
@@ -83,8 +83,9 @@ public class UtilLoadFiles {
                 listFromBookFile.add(book);
                 dataFromFiles.setListFromBookFile(listFromBookFile);
             }
+            bufferedReader.close();
         } catch (FileNotFoundException e) {
-            System.out.println("File not exists");
+            System.out.println("File load failure. File not exists");
         } catch (IOException e1) {
             System.out.println("Buffer isnt ready");
 

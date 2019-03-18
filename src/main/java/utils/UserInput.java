@@ -1,5 +1,7 @@
 package utils;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.Scanner;
 
 public class UserInput {
@@ -23,14 +25,11 @@ public class UserInput {
         Scanner scanner = new Scanner(System.in);
         System.out.println(message);
         stringFromUser = scanner.nextLine();
-        while (!isAlphabet(stringFromUser)) {
+        while (StringUtils.isNumeric(stringFromUser)) {
             System.out.println("You must enter String! Please write again");
             stringFromUser = scanner.nextLine();
         }
         return stringFromUser;
     }
 
-    private boolean isAlphabet(String s) {
-        return s.matches("[A-Z a-z]+");
-    }
 }
