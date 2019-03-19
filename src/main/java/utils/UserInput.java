@@ -12,7 +12,7 @@ public class UserInput {
         do {
             System.out.println(message);
             while (!scanner.hasNextInt()) {
-                System.out.println("Please it have to be number. Write again");
+                System.out.println("Please it has to be number. Write again");
                 scanner.next();
             }
             numberFromUser = scanner.nextInt();

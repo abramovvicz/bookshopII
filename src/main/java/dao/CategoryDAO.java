@@ -4,6 +4,7 @@ import model.Category;
 import utils.UserInput;
 
 import java.util.Comparator;
+import java.util.Optional;
 
 public class CategoryDAO {
 
@@ -45,7 +46,7 @@ public class CategoryDAO {
         String categoryName = userInput.getStringFormUser("Please enter category name");
         for (Category category : dataFromFiles.getListFromCategoryFile()) {
             while (category.getCategoryName().equalsIgnoreCase(categoryName)) {
-                System.out.println("This category exist please enter another");
+                System.out.print("This category exist please enter another");
                 categoryName = userInput.getStringFormUser("");
             }
         }
@@ -53,26 +54,15 @@ public class CategoryDAO {
     }
 
     public void getCategoryIdFromUser() {
-        int categoryByUserID = userInput.getNumberFromUser("Chose ID Category to edit");
-        for (Category category : dataFromFiles.getListFromCategoryFile()) {
-            System.out.println("getCategoryID " + category.getCategoryID());
-            System.out.println("categoryByUserID " + categoryByUserID);
-            while (category.getCategoryID() != categoryByUserID) {
-                System.out.print("Category ID invalid, please chose another ID");
-                categoryByUserID = userInput.getNumberFromUser("");
-            }
-        }
-
-        editCategoryByUser(categoryByUserID, getCategoryName());
-    }
-
-
-    private void editCategoryByUser(int categoryIdByUser, String nameCategoryByUser) {
-        for (Category category : dataFromFiles.getListFromCategoryFile()) {
-            if (category.getCategoryID() == categoryIdByUser) {
-                int categoryIndexOf = dataFromFiles.getListFromCategoryFile().indexOf(category);
-                dataFromFiles.getListFromCategoryFile().get(categoryIndexOf).setCategoryName(nameCategoryByUser);
+        while (true) {
+            int chosenCategoryId = userInput.getNumberFromUser("Choose category ID to edit");
+            Optional<Category> foundCategory = dataFromFiles.getListFromCategoryFile()
+                    .stream().filter(x -> x.getCategoryID() == chosenCategoryId).findFirst();
+            if (foundCategory.isPresent()) {
+                foundCategory.get().setCategoryName(getCategoryName());
+                break;
             }
         }
     }
 }
+

@@ -3,6 +3,7 @@ package functions;
 import model.Author;
 import model.Book;
 import dao.DataFromFiles;
+import model.Category;
 import utils.UserInput;
 
 import java.util.ArrayList;
@@ -12,6 +13,7 @@ public class DataFunctions {
 
     public DataFromFiles dataFromFiles = DataFromFiles.getInstance();
     public UserInput userInput = new UserInput();
+
 
     public void showAllBooks() {
         dataFromFiles.getListFromBookFile().forEach(System.out::print);
