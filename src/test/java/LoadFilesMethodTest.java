@@ -1,4 +1,5 @@
 import dao.AuthorDAO;
+import dao.BookDAO;
 import dao.CategoryDAO;
 import enums.Binding;
 import model.Author;
@@ -17,6 +18,7 @@ public class LoadFilesMethodTest {
 
     AuthorDAO authorDAO;
     CategoryDAO categoryDAO;
+    BookDAO bookDAO;
     UtilLoadFiles utilLoadFiles;
 
     @BeforeEach
@@ -24,6 +26,7 @@ public class LoadFilesMethodTest {
         utilLoadFiles = new UtilLoadFiles();
         authorDAO = new AuthorDAO();
         categoryDAO = new CategoryDAO();
+        bookDAO = new BookDAO();
     }
 
 
@@ -48,6 +51,34 @@ public class LoadFilesMethodTest {
         assertEquals(author2.getFullName(), authorTestList.get(1).getFullName());
         assertEquals(author1.getAge(), authorTestList.get(0).getAge());
         assertEquals(author2.getAge(), authorTestList.get(1).getAge());
+    }
+
+
+    @Test
+    void saveBooksToFile() {
+        List<Author> authorTestList = new ArrayList<>();
+        List<Book> bookTestList = new ArrayList<>();
+        List<Book> listFromBooksFile;
+
+        Author author1 = new Author(1, "Andrzej Sapkowski", 59);
+        Author author2 = new Author(2, "S. Lem", 99);
+        authorTestList.add(author1);
+        authorTestList.add(author2);
+
+        Category category1 = new Category(1, "Java", 3);
+
+        Book book1 = new Book(1, "Title 1", 132350882, 2008, Binding.T, authorTestList, category1);
+        Book book2 = new Book(2, "Title 2", 134685997, 1923, Binding.M, authorTestList, category1);
+        Book book3 = new Book(3, "Title 3", 5678, 1923, Binding.M, authorTestList, category1);
+        bookTestList.add(book1);
+        bookTestList.add(book2);
+        bookTestList.add(book3);
+
+
+        bookDAO.saveBookToFile(bookTestList);
+        listFromBooksFile = utilLoadFiles.loadBookFileNew("src/test/resources/booksTestFile.csv");
+        assertEquals(listFromBooksFile.get(1).getTitle(), bookTestList.get(1).getTitle());
+        assertEquals(listFromBooksFile.get(1).getIsbn(), bookTestList.get(1).getIsbn());
     }
 
     @Test

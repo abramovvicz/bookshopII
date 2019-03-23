@@ -1,22 +1,27 @@
 package functions;
 
+import dao.DataFromFiles;
+import lombok.Setter;
 import model.Author;
 import model.Book;
-import dao.DataFromFiles;
-import model.Category;
 import utils.UserInput;
+import view.BookPrintStrategy;
+import view.YearTitleIsbnBookPrintStrategyImpl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class DataFunctions {
 
     public DataFromFiles dataFromFiles = DataFromFiles.getInstance();
     public UserInput userInput = new UserInput();
+    @Setter
+    private BookPrintStrategy printStrategy = new YearTitleIsbnBookPrintStrategyImpl();
 
 
     public void showAllBooks() {
-        dataFromFiles.getListFromBookFile().forEach(System.out::print);
+        printStrategy.print(dataFromFiles.getListFromBookFile());
     }
 
 
@@ -30,13 +35,13 @@ public class DataFunctions {
 
 
     public void showBooksFromDesignPatternsCategory() {
-        dataFromFiles.getListFromBookFile().stream().filter(x -> x.getCategory().getCategoryID() == 2).forEach(System.out::println);
+        printStrategy.print(dataFromFiles.getListFromBookFile().stream().filter(x -> x.getCategory().getCategoryID() == 2).collect(Collectors.toList()));
     }
 
     public List<Book> showBooksChosenAuthorByUser() {
         System.out.println("Enter Author ID to show authors books: ");
         dataFromFiles.getListFromAuthorFile().forEach(x -> System.out.println(x.getId() + ": " + x.getFullName()));
-        int authorId = userInput.getNumberFromUser("");
+        int authorId = userInput.getNumberFromUser();
         List<Book> resultBookList = new ArrayList<>();
         for (Book book : dataFromFiles.getListFromBookFile()) {
             for (Author author : book.getAuthor()) {

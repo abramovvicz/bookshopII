@@ -6,11 +6,10 @@ import java.util.Scanner;
 
 public class UserInput {
 
-    public int getNumberFromUser(String message) {
+    public int getNumberFromUser() {
         Scanner scanner = new Scanner(System.in);
         int numberFromUser;
         do {
-            System.out.println(message);
             while (!scanner.hasNextInt()) {
                 System.out.println("Please it has to be number. Write again");
                 scanner.next();
@@ -20,10 +19,9 @@ public class UserInput {
         return numberFromUser;
     }
 
-    public String getStringFormUser(String message) {
+    public String getStringFormUser() {
         String stringFromUser;
         Scanner scanner = new Scanner(System.in);
-        System.out.println(message);
         stringFromUser = scanner.nextLine();
         while (StringUtils.isNumeric(stringFromUser)) {
             System.out.println("You must enter String! Please write again");
