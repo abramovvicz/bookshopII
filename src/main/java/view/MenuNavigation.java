@@ -7,16 +7,16 @@ import dao.DataFromFiles;
 import enums.FileTypes;
 import functions.BookFunctions;
 import functions.DataFunctions;
-import utils.Status;
+import utils.ApplicationStatus;
 import utils.UserInput;
 import utils.UtilLoadFiles;
 
 public class MenuNavigation {
 
-    AuthorDAO authorDAO = new AuthorDAO();
-    CategoryDAO categoryDAO = new CategoryDAO();
-    BookDAO bookDAO = new BookDAO();
-    private Status status = Status.getInstance();
+    private AuthorDAO authorDAO = new AuthorDAO();
+    private CategoryDAO categoryDAO = new CategoryDAO();
+    private BookDAO bookDAO = new BookDAO();
+    private ApplicationStatus applicationStatus = ApplicationStatus.getInstance();
     private UserInput userInput = new UserInput();
     private UtilLoadFiles utilLoadFiles = new UtilLoadFiles();
     private DataFunctions dataFunctions = new DataFunctions();
@@ -29,6 +29,14 @@ public class MenuNavigation {
         utilLoadFiles.loadCategoryFileNew(FileTypes.CATEGORIES.getFileAddress());
         utilLoadFiles.loadBookFileNew(FileTypes.BOOKS.getFileAddress());
     }
+
+    private void saveAllFiles() {
+        authorDAO.saveAuthorListToFile(dataFromFiles.getListFromAuthorFile());
+        categoryDAO.saveCategoryListToFile(dataFromFiles.getListFromCategoryFile());
+        bookDAO.saveBookToFile(dataFromFiles.getListFromBookFile());
+        System.out.println("Save files successful");
+    }
+
 
     public void menuNavigation() {
         int numberFromUser = 0;
@@ -47,14 +55,7 @@ public class MenuNavigation {
 
     }
 
-    private void saveAllFiles() {
-        authorDAO.saveAuthorListToFile(dataFromFiles.getListFromAuthorFile());
-        categoryDAO.saveCategoryListToFile(dataFromFiles.getListFromCategoryFile());
-        bookDAO.saveBookToFile(dataFromFiles.getListFromBookFile());
-    }
-
-
-    public void chooseOptionMenu(int inputNumber) {
+    private void chooseOptionMenu(int inputNumber) {
         switch (inputNumber) {
             case 0:
                 menu.showMenu();
@@ -63,7 +64,7 @@ public class MenuNavigation {
                 System.out.println("Bookshop email: contact@bookshop.pl");
                 break;
             case 2:
-                if (status.isStatus()) {
+                if (applicationStatus.isStatus()) {
                     System.out.println("Data has modified do You want to save? Chose: Y/N");
                     String txtFromUser = userInput.getStringFormUser();
                     if (txtFromUser.equalsIgnoreCase("y")) {
@@ -75,6 +76,7 @@ public class MenuNavigation {
                         break;
                     }
                 }
+                System.out.println("Nothingo to save...");
                 System.out.println("Exit from program");
                 break;
             case 3:
@@ -117,19 +119,19 @@ public class MenuNavigation {
                 System.out.println(dataFunctions.showBooksChosenAuthorByUser());
                 break;
             case 16:
-                bookDAO.deleteBookByID(dataFromFiles.getListFromBookFile());
+                bookDAO.deleteBookByIdStream(dataFromFiles.getListFromBookFile());
                 break;
             case 17:
                 authorDAO.deleteAuthorsByID(dataFromFiles.getListFromAuthorFile());
                 break;
             case 18:
-                categoryDAO.deleteCategoryByID(dataFromFiles.getListFromCategoryFile());
+                categoryDAO.deleteCategoryByIDStream(dataFromFiles.getListFromCategoryFile());
                 break;
             case 19:
                 saveAllFiles();
                 break;
             case 20:
-                authorDAO.editAuthorAgeByUser(dataFromFiles.getListFromAuthorFile());
+                authorDAO.editAuthorAgeByUserStream(dataFromFiles.getListFromAuthorFile());
                 break;
             case 21:
                 System.out.println("Change view books as: Year/Title/Isbn");

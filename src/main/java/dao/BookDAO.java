@@ -3,51 +3,68 @@ package dao;
 import enums.FileTypes;
 import model.Author;
 import model.Book;
-import utils.Status;
+import utils.ApplicationStatus;
 import utils.UserInput;
 
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class BookDAO {
 
     private UserInput userInput = new UserInput();
-    private Status status = Status.getInstance();
+    private ApplicationStatus applicationStatus = ApplicationStatus.getInstance();
 
     public void deleteBookByID(List<Book> bookList) {
-        System.out.println("Enter book ID to delete");
-
-        List<Book> copyOfBookList = new ArrayList<>(bookList);
-        boolean flag = true;
-        while (flag) {
-            int idEnteredByUser = getBookIdFromUser();
-            for (Book book : copyOfBookList) {
-                if (book.getId() == idEnteredByUser) {
-                    bookList.remove(book);
-                    status.setStatus(true);
-
-                    flag = false;
+        if (bookList.isEmpty()) {
+            System.out.println("Book list is empty");
+        } else {
+            System.out.println("Enter book ID to delete");
+            List<Book> copyOfBookList = new ArrayList<>(bookList);
+            boolean flag = true;
+            while (flag) {
+                int idEnteredByUser = getBookIdFromUser();
+                for (Book book : copyOfBookList) {
+                    if (book.getId() == idEnteredByUser) {
+                        bookList.remove(book);
+                        System.out.println("Remove successful");
+                        applicationStatus.setStatus(true);
+                        flag = false;
+                    }
+                }
+                if (flag) {
+                    System.out.println("Did`int find any ids. Renter ID:");
                 }
             }
-            System.out.println("Did`nt find book with entered ID");
-            System.out.println("Please enter another ID");
         }
-
-        /* STREAM
-        Optional<Book> first = copyOfBookList.stream().filter(x -> idBook == x.getId()).findFirst();
-        while (!first.isPresent()) {
-            System.out.println("Did`nt find book with entered ID");
-            System.out.println("Please enter another ID");
-            idBook = getBookIdFromUser();
-        }
-       bookList.remove(first.get()); */
     }
 
 
+    public void deleteBookByIdStream(List<Book> bookList) {
+        if (bookList.isEmpty()) {
+            System.out.println("Book list is empty");
+        } else {
+            System.out.println("Enter book ID to delete");
+            List<Book> copyOfBookList = new ArrayList<>(bookList);
+            while (true) {
+                int idBook = userInput.getNumberFromUser();
+                Optional<Book> first = copyOfBookList.stream().filter(x -> idBook == x.getId()).findFirst();
+                if (first.isPresent()) {
+                    bookList.remove(first.get());
+                    applicationStatus.setStatus(true);
+                    System.out.println("Successfully remove book of if: " + idBook);
+                    break;
+                } else {
+                    System.out.println("Did`int find any ids. Renter ID:");
+                }
+            }
+        }
+
+    }
+
     private int getBookIdFromUser() {
-        System.out.println("Enter book ID to delete");
         return userInput.getNumberFromUser();
     }
 
@@ -66,7 +83,7 @@ public class BookDAO {
                 fileWriter.write(pattern);
                 fileWriter.write("\n");
             }
-            System.out.println("Book has successfully saved");
+            System.out.println("Books file has successfully saved");
             fileWriter.close();
 
 

@@ -2,7 +2,7 @@ package dao;
 
 import enums.FileTypes;
 import model.Author;
-import utils.Status;
+import utils.ApplicationStatus;
 import utils.UserInput;
 
 import java.io.FileWriter;
@@ -16,21 +16,46 @@ public class AuthorDAO {
 
     private DataFromFiles dataFromFiles = DataFromFiles.getInstance();
     private UserInput userInput = new UserInput();
-    private Status status = Status.getInstance();
+    private ApplicationStatus applicationStatus = ApplicationStatus.getInstance();
 
 
     public void editAuthorAgeByUser(List<Author> authorList) {
+        if (authorList.isEmpty()) {
+            System.out.println("Sorry authors list is empty");
+        }
+        System.out.println("Enter author id to change Age");
         int newAuthorsAge;
+        boolean flag = true;
+        while (flag) {
+            newAuthorsAge = getAuthorIdFromUser();
+            for (Author author : authorList) {
+                if (author.getId() == newAuthorsAge) {
+                    author.setAge(getAuthorAgeFromUser());
+                    flag = false;
+                }
+            }
+            if (flag) {
+                System.out.println("Did`int find any authors. Please renter authors ID");
+            }
+        }
+    }
+
+    public void editAuthorAgeByUserStream(List<Author> authorList) {
+        if (authorList.isEmpty()) {
+            System.out.println("Sorry authors list is empty");
+        }
         System.out.println("Enter author id to change Age");
         while (true) {
-            newAuthorsAge = getAuthorIdFromUser();
-            int finalNewAuthorsAge = newAuthorsAge;
+            int newAuthorsAge = userInput.getNumberFromUser();
             Optional<Author> findAuthorToChangeAge = authorList.stream()
-                    .filter(x -> x.getId() == finalNewAuthorsAge).findFirst();
+                    .filter(x -> x.getId() == newAuthorsAge).findFirst();
             if (findAuthorToChangeAge.isPresent()) {
                 findAuthorToChangeAge.get().setAge(getAuthorAgeFromUser());
-                status.setStatus(true);
+                applicationStatus.setStatus(true);
+                System.out.println("Successfully change authors age");
                 break;
+            } else {
+                System.out.println("Didi`nt find anything, please renter id to change Authors age");
             }
         }
     }
@@ -40,9 +65,8 @@ public class AuthorDAO {
         int age = getAuthorAgeFromUser();
         int id = getAuthorsID();
         addAuthorToList(id, name, age);
-        status.setStatus(true);
-
-        System.out.println("Successfully added new author");
+        applicationStatus.setStatus(true);
+        System.out.println("Successfully added a new author");
 
     }
 
@@ -52,7 +76,6 @@ public class AuthorDAO {
         while (numberFromUser < 0 || numberFromUser > 120) {
             System.out.println("Please enter valid data form 1 to 120");
             System.out.println("Enter Authors age");
-
             numberFromUser = userInput.getNumberFromUser();
         }
         return numberFromUser;
@@ -64,12 +87,18 @@ public class AuthorDAO {
     }
 
     private int getAuthorsID() {
+        int authorsID = 1;
         if (dataFromFiles.getListFromAuthorFile().isEmpty()) {
             return 1;
         }
-        Author authorWithMaxId = dataFromFiles.getListFromAuthorFile().stream()
-                .max(Comparator.comparingInt(x -> x.getId())).get();
-        return authorWithMaxId.getId() + 1;
+        Optional<Author> authorWithMaxId = dataFromFiles.getListFromAuthorFile().stream()
+                .max(Comparator.comparingInt(x -> x.getId()));
+        if (authorWithMaxId.isPresent()) {
+            authorsID = authorWithMaxId.get().getId() + 1;
+        } else {
+            System.out.println("Didn`t find authors id");
+        }
+        return authorsID;
     }
 
 
@@ -78,6 +107,9 @@ public class AuthorDAO {
     }
 
     public void deleteAuthorsByID(List<Author> authorList) {
+        if (authorList.isEmpty()) {
+            System.out.println("Sorry author list is empty");
+        }
         System.out.println("Enter author ID to delete");
         List<Author> copyAuthorsList = new ArrayList<>(authorList);
         boolean flag = true;
@@ -86,20 +118,21 @@ public class AuthorDAO {
             for (Author author : copyAuthorsList) {
                 if (author.getId() == idEnteredByUser) {
                     authorList.remove(author);
-                    status.setStatus(true);
-
+                    applicationStatus.setStatus(true);
                     flag = false;
                 }
             }
-            System.out.println("Did`nt find author with entered ID");
-            System.out.println("Please enter another ID");
+            if (flag) {
+                System.out.println("Did`nt find author with entered ID");
+                System.out.println("Please enter another ID");
+            }
         }
     }
 
     private void addAuthorToList(int id, String name, int age) {
         Author author = new Author(id, name, age);
         dataFromFiles.getListFromAuthorFile().add(author);
-        status.setStatus(true);
+        applicationStatus.setStatus(true);
         System.out.println("Author successfully added to database");
     }
 

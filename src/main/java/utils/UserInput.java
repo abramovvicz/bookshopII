@@ -15,7 +15,7 @@ public class UserInput {
                 scanner.next();
             }
             numberFromUser = scanner.nextInt();
-        } while (numberFromUser <= 0);
+        } while (numberFromUser < 0);
         return numberFromUser;
     }
 

@@ -2,7 +2,7 @@ package dao;
 
 import enums.FileTypes;
 import model.Category;
-import utils.Status;
+import utils.ApplicationStatus;
 import utils.UserInput;
 
 import java.io.FileWriter;
@@ -16,11 +16,11 @@ public class CategoryDAO {
 
     private DataFromFiles dataFromFiles = DataFromFiles.getInstance();
     private UserInput userInput = new UserInput();
-    private Status status = Status.getInstance();
+    private ApplicationStatus applicationStatus = ApplicationStatus.getInstance();
 
 
     public void addCategoryToList(int id, String name, int priority) {
-        status.setStatus(true);
+        applicationStatus.setStatus(true);
 
         Category category = new Category(id, name, priority);
         dataFromFiles.getListFromCategoryFile().add(category);
@@ -45,21 +45,47 @@ public class CategoryDAO {
 
 
     public void deleteCategoryByID(List<Category> categoryList) {
+        if (categoryList.isEmpty()) {
+            System.out.println("Sorry category list is empty");
+        }
         System.out.println("Enter category ID to delete");
         List<Category> copyAuthorsList = new ArrayList<>(categoryList);
         boolean flag = true;
         while (flag) {
-            int idEnteredByUser = getCategoryIdFromUser();
+            int idEnteredByUser = userInput.getNumberFromUser();
             for (Category category : copyAuthorsList) {
                 if (category.getCategoryID() == idEnteredByUser) {
                     categoryList.remove(category);
-                    status.setStatus(true);
-
+                    applicationStatus.setStatus(true);
+                    System.out.println("Successfully remove category");
                     flag = false;
                 }
             }
-            System.out.println("Did`nt find author with entered ID");
-            System.out.println("Please enter another ID");
+            if (flag) {
+                System.out.println("Did`nt find category, please enter another ID");
+            }
+        }
+    }
+
+    public void deleteCategoryByIDStream(List<Category> categoryList) {
+        if (categoryList.isEmpty()) {
+            System.out.println("Sorry category list is empty");
+        }
+        System.out.println("Enter category ID to delete");
+        List<Category> copyCategoryList = new ArrayList<>(categoryList);
+        while (true) {
+            int chosenCategoryId = userInput.getNumberFromUser();
+            Optional<Category> foundCategory = copyCategoryList
+                    .stream().filter(x -> x.getCategoryID() == chosenCategoryId).findFirst();
+            if (foundCategory.isPresent()) {
+                categoryList.remove(foundCategory);
+                applicationStatus.setStatus(true);
+                System.out.println("Successfully remove category of ID: " + chosenCategoryId);
+                break;
+            } else {
+                System.out.println("Did`int find category id - please renter ID!");
+            }
+
         }
     }
 
@@ -85,22 +111,20 @@ public class CategoryDAO {
         return categoryName;
     }
 
-    public int getCategoryIdFromUser() {
-        int chosenCategoryId;
+    public void getCategoryIdFromUser() {
+        System.out.println("Choose category ID to edit");
         while (true) {
-            System.out.println("Choose category ID to edit");
-            chosenCategoryId = userInput.getNumberFromUser();
-            int finalChosenCategoryId = chosenCategoryId;
+            int chosenCategoryId = userInput.getNumberFromUser();
             Optional<Category> foundCategory = dataFromFiles.getListFromCategoryFile()
-                    .stream().filter(x -> x.getCategoryID() == finalChosenCategoryId).findFirst();
+                    .stream().filter(x -> x.getCategoryID() == chosenCategoryId).findFirst();
             if (foundCategory.isPresent()) {
                 foundCategory.get().setCategoryName(getCategoryName());
-                status.setStatus(true);
-
+                applicationStatus.setStatus(true);
                 break;
+            } else {
+                System.out.println("Did`int find category id - please renter ID!");
             }
         }
-        return chosenCategoryId;
     }
 
     public void saveCategoryListToFile(List<Category> categoryList) {

@@ -25,5 +25,4 @@ public class Category {
                 "Priority: " + priority + "\n";
     }
 
-
 }
