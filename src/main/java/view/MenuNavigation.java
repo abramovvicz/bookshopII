@@ -76,7 +76,7 @@ public class MenuNavigation {
                         break;
                     }
                 }
-                System.out.println("Nothingo to save...");
+                System.out.println("Nothing to save...");
                 System.out.println("Exit from program");
                 break;
             case 3:
