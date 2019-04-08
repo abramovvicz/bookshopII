@@ -1,6 +1,4 @@
-import dao.AuthorDAO;
-import dao.BookDAO;
-import dao.CategoryDAO;
+
 import enums.Binding;
 import model.Author;
 import model.Book;
@@ -16,17 +14,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class LoadFilesMethodTest {
 
-    AuthorDAO authorDAO;
-    CategoryDAO categoryDAO;
-    BookDAO bookDAO;
     UtilLoadFiles utilLoadFiles;
 
     @BeforeEach
     void setUp() {
         utilLoadFiles = new UtilLoadFiles();
-        authorDAO = new AuthorDAO();
-        categoryDAO = new CategoryDAO();
-        bookDAO = new BookDAO();
     }
 
 
@@ -40,7 +32,6 @@ public class LoadFilesMethodTest {
         authorTestList.add(author1);
         authorTestList.add(author2);
 
-        authorDAO.saveAuthorListToFile(authorTestList);
         listFromAuthorFile = utilLoadFiles.loadAuthorFileNew("src/test/resources/authorsTestFile.csv");
         author1 = listFromAuthorFile.get(0);
         author2 = listFromAuthorFile.get(1);
@@ -75,7 +66,6 @@ public class LoadFilesMethodTest {
         bookTestList.add(book3);
 
 
-        bookDAO.saveBookToFile(bookTestList);
         listFromBooksFile = utilLoadFiles.loadBookFileNew("src/test/resources/booksTestFile.csv");
         assertEquals(listFromBooksFile.get(1).getTitle(), bookTestList.get(1).getTitle());
         assertEquals(listFromBooksFile.get(1).getIsbn(), bookTestList.get(1).getIsbn());

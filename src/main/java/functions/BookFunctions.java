@@ -234,7 +234,7 @@ public class BookFunctions {
     }
 
     public List<Book> sortBooksByYearASCFor(List<Book> bookList) {
-        Collections.sort(bookList, (o1, o2) -> Integer.compare(o1.getYear(), o2.getYear()));
+        bookList.stream().sorted(Comparator.comparingInt(Book::getYear)).collect(Collectors.toList());
         return bookList;
     }
 
@@ -246,7 +246,7 @@ public class BookFunctions {
     }
 
     public List<Book> sortBooksByYearDESCFor(List<Book> bookList) {
-        Collections.sort(bookList, (o1, o2) -> Integer.compare(o2.getYear(), o1.getYear()));
+       bookList.stream().sorted((o1, o2) -> Integer.compare(o2.getYear(), o1.getYear())).collect(Collectors.toList());
         return bookList;
     }
 

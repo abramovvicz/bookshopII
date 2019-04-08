@@ -3,7 +3,7 @@ package dao;
 import enums.FileTypes;
 import model.Author;
 import model.Book;
-import utils.ApplicationStatus;
+import utils.CheckApplicationState;
 import utils.UserInput;
 
 import java.io.FileWriter;
@@ -15,7 +15,7 @@ import java.util.Optional;
 public class BookDAO {
 
     private UserInput userInput = new UserInput();
-    private ApplicationStatus applicationStatus = ApplicationStatus.getInstance();
+    private CheckApplicationState checkApplicationState = CheckApplicationState.getInstance();
 
     public void deleteBookByID(List<Book> bookList) {
         if (bookList.isEmpty()) {
@@ -30,7 +30,7 @@ public class BookDAO {
                     if (book.getId() == idEnteredByUser) {
                         bookList.remove(book);
                         System.out.println("Remove successful");
-                        applicationStatus.setStatus(true);
+                        checkApplicationState.setStatus(true);
                         flag = false;
                     }
                 }
@@ -53,7 +53,7 @@ public class BookDAO {
                 Optional<Book> first = copyOfBookList.stream().filter(x -> idBook == x.getId()).findFirst();
                 if (first.isPresent()) {
                     bookList.remove(first.get());
-                    applicationStatus.setStatus(true);
+                    checkApplicationState.setStatus(true);
                     System.out.println("Successfully remove book of if: " + idBook);
                     break;
                 } else {
@@ -68,29 +68,6 @@ public class BookDAO {
         return userInput.getNumberFromUser();
     }
 
-    public void saveBookToFile(List<Book> bookList) {
-        try {
-            FileWriter fileWriter = new FileWriter(FileTypes.NEW_BOOKS.getFileAddress());
-            for (Book book : bookList) {
-                List<Integer> authorsIDs = new ArrayList<>();
-                for (Author author : book.getAuthor()) {
-                    authorsIDs.add(author.getId());
-                }
-                String authorsToString = String.valueOf(authorsIDs).substring(1, String.valueOf(authorsIDs).length() - 1);
-                String pattern = book.getId() + ";" + book.getTitle() + ";" + book.getIsbn() + ";"
-                        + book.getYear() + ";" + book.getBinding() + ";" + authorsToString + ";" +
-                        book.getCategory().getCategoryID();
-                fileWriter.write(pattern);
-                fileWriter.write("\n");
-            }
-            System.out.println("Books file has successfully saved");
-            fileWriter.close();
 
-
-        } catch (IOException e) {
-            System.out.println("Sorry, there was error with saving file");
-        }
-
-    }
 
 }

@@ -37,7 +37,7 @@ public class CollectionTests {
         //ex13
         appendAllElementsToString();
         //ex14
-        showElemenetsWithS("s");
+        showElementsWithS("s");
         //ex15
         swowThreeAndThourElement(1, 3);
         //ex16
@@ -165,14 +165,14 @@ public class CollectionTests {
     //ex13
     private static void appendAllElementsToString() {
         String result = "";
-        for (String s : namesList) {
-            result += s;
+        for (String element : namesList) {
+            String.join(result, element);
         }
         System.out.println("połączone stringi " + result);
     }
 
     //ex14
-    private static void showElemenetsWithS(String s) {
+    private static void showElementsWithS(String s) {
         String elements = namesList.stream().filter(x -> x.contains(s)).collect(Collectors.joining());
         System.out.println("połaćzone stringi " + elements);
     }
@@ -272,7 +272,7 @@ public class CollectionTests {
     private static void createSet() {
         nameSet.addAll(Arrays.asList("Marek", "Aleksandra", "Marta", "Jakub", "Bartosz"));
         nameSet.forEach(System.out::print);
-        System.out.println("");
+        System.out.println();
     }
 
     //ex30

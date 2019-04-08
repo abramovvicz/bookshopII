@@ -97,7 +97,7 @@ public class UtilLoadFiles {
         List<Author> listAuthorsForBook = new ArrayList<>();
 
         if (idsAuthors.length == 0) {
-            System.out.println("nie ma autorów");
+            System.out.println("Failed to load authors. The database is empty.");
         }
         for (String idsAuthor : idsAuthors) {
             listAuthorsForBook.add(dataFromFiles.getListFromAuthorFile()

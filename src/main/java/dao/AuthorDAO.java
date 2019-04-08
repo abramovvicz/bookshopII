@@ -2,7 +2,7 @@ package dao;
 
 import enums.FileTypes;
 import model.Author;
-import utils.ApplicationStatus;
+import utils.CheckApplicationState;
 import utils.UserInput;
 
 import java.io.FileWriter;
@@ -16,7 +16,7 @@ public class AuthorDAO {
 
     private DataFromFiles dataFromFiles = DataFromFiles.getInstance();
     private UserInput userInput = new UserInput();
-    private ApplicationStatus applicationStatus = ApplicationStatus.getInstance();
+    private CheckApplicationState checkApplicationState = CheckApplicationState.getInstance();
 
 
     public void editAuthorAgeByUser(List<Author> authorList) {
@@ -51,7 +51,7 @@ public class AuthorDAO {
                     .filter(x -> x.getId() == newAuthorsAge).findFirst();
             if (findAuthorToChangeAge.isPresent()) {
                 findAuthorToChangeAge.get().setAge(getAuthorAgeFromUser());
-                applicationStatus.setStatus(true);
+                checkApplicationState.setStatus(true);
                 System.out.println("Successfully change authors age");
                 break;
             } else {
@@ -65,7 +65,7 @@ public class AuthorDAO {
         int age = getAuthorAgeFromUser();
         int id = getAuthorsID();
         addAuthorToList(id, name, age);
-        applicationStatus.setStatus(true);
+        checkApplicationState.setStatus(true);
         System.out.println("Successfully added a new author");
 
     }
@@ -118,7 +118,7 @@ public class AuthorDAO {
             for (Author author : copyAuthorsList) {
                 if (author.getId() == idEnteredByUser) {
                     authorList.remove(author);
-                    applicationStatus.setStatus(true);
+                    checkApplicationState.setStatus(true);
                     flag = false;
                 }
             }
@@ -132,26 +132,11 @@ public class AuthorDAO {
     private void addAuthorToList(int id, String name, int age) {
         Author author = new Author(id, name, age);
         dataFromFiles.getListFromAuthorFile().add(author);
-        applicationStatus.setStatus(true);
+        checkApplicationState.setStatus(true);
         System.out.println("Author successfully added to database");
     }
 
-    public void saveAuthorListToFile(List<Author> listOFAuthors) {
-        FileWriter fileWriter;
-        try {
-            fileWriter = new FileWriter(FileTypes.NEW_AUTHORS.getFileAddress());
-            for (Author listOFAuthor : listOFAuthors) {
-                String pattern = listOFAuthor.getId() + ";" + listOFAuthor.getFullName() + ";" + listOFAuthor.getAge();
-                fileWriter.write(pattern);
-                fileWriter.write("\n");
 
-            }
-            System.out.println("Author file has successfully saved");
-            fileWriter.close();
-        } catch (IOException e) {
-            System.out.println("There was some problem");
-        }
-    }
 }
 
   /*

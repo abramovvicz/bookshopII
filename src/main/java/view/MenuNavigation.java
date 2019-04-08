@@ -7,18 +7,20 @@ import dao.DataFromFiles;
 import enums.FileTypes;
 import functions.BookFunctions;
 import functions.DataFunctions;
-import utils.ApplicationStatus;
+import utils.CheckApplicationState;
 import utils.UserInput;
 import utils.UtilLoadFiles;
+import utils.UtilSaveFiles;
 
 public class MenuNavigation {
 
     private AuthorDAO authorDAO = new AuthorDAO();
     private CategoryDAO categoryDAO = new CategoryDAO();
     private BookDAO bookDAO = new BookDAO();
-    private ApplicationStatus applicationStatus = ApplicationStatus.getInstance();
+    private CheckApplicationState checkApplicationState = CheckApplicationState.getInstance();
     private UserInput userInput = new UserInput();
     private UtilLoadFiles utilLoadFiles = new UtilLoadFiles();
+    private UtilSaveFiles utilSaveFiles = new UtilSaveFiles();
     private DataFunctions dataFunctions = new DataFunctions();
     private BookFunctions bookFunctions = new BookFunctions();
     private DataFromFiles dataFromFiles = DataFromFiles.getInstance();
@@ -31,15 +33,15 @@ public class MenuNavigation {
     }
 
     private void saveAllFiles() {
-        authorDAO.saveAuthorListToFile(dataFromFiles.getListFromAuthorFile());
-        categoryDAO.saveCategoryListToFile(dataFromFiles.getListFromCategoryFile());
-        bookDAO.saveBookToFile(dataFromFiles.getListFromBookFile());
+        utilSaveFiles.saveAuthorListToFile(dataFromFiles.getListFromAuthorFile());
+        utilSaveFiles.saveCategoryListToFile(dataFromFiles.getListFromCategoryFile());
+        utilSaveFiles.saveBookToFile(dataFromFiles.getListFromBookFile());
         System.out.println("Save files successful");
     }
 
 
     public void menuNavigation() {
-        int numberFromUser = 0;
+        int numberFromUser;
         do {
             menu.showMenu();
             System.out.println("Enter number:");
@@ -64,7 +66,7 @@ public class MenuNavigation {
                 System.out.println("Bookshop email: contact@bookshop.pl");
                 break;
             case 2:
-                if (applicationStatus.isStatus()) {
+                if (checkApplicationState.isStatus()) {
                     System.out.println("Data has modified do You want to save? Chose: Y/N");
                     String txtFromUser = userInput.getStringFormUser();
                     if (txtFromUser.equalsIgnoreCase("y")) {
@@ -98,10 +100,10 @@ public class MenuNavigation {
                 categoryDAO.getCategoryIdFromUser();
                 break;
             case 9:
-                authorDAO.saveAuthorListToFile(dataFromFiles.getListFromAuthorFile());
+                utilSaveFiles.saveAuthorListToFile(dataFromFiles.getListFromAuthorFile());
                 break;
             case 10:
-                bookDAO.saveBookToFile(dataFromFiles.getListFromBookFile());
+                utilSaveFiles.saveBookToFile(dataFromFiles.getListFromBookFile());
                 break;
             case 11:
                 bookFunctions.sortBooksByYearASC(utilLoadFiles.listFromBookFile);

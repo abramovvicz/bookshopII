@@ -2,7 +2,7 @@ package dao;
 
 import enums.FileTypes;
 import model.Category;
-import utils.ApplicationStatus;
+import utils.CheckApplicationState;
 import utils.UserInput;
 
 import java.io.FileWriter;
@@ -16,12 +16,11 @@ public class CategoryDAO {
 
     private DataFromFiles dataFromFiles = DataFromFiles.getInstance();
     private UserInput userInput = new UserInput();
-    private ApplicationStatus applicationStatus = ApplicationStatus.getInstance();
+    private CheckApplicationState checkApplicationState = CheckApplicationState.getInstance();
 
 
     public void addCategoryToList(int id, String name, int priority) {
-        applicationStatus.setStatus(true);
-
+        checkApplicationState.setStatus(true);
         Category category = new Category(id, name, priority);
         dataFromFiles.getListFromCategoryFile().add(category);
         System.out.println("Successfully added new category");
@@ -56,7 +55,7 @@ public class CategoryDAO {
             for (Category category : copyAuthorsList) {
                 if (category.getCategoryID() == idEnteredByUser) {
                     categoryList.remove(category);
-                    applicationStatus.setStatus(true);
+                    checkApplicationState.setStatus(true);
                     System.out.println("Successfully remove category");
                     flag = false;
                 }
@@ -78,8 +77,8 @@ public class CategoryDAO {
             Optional<Category> foundCategory = copyCategoryList
                     .stream().filter(x -> x.getCategoryID() == chosenCategoryId).findFirst();
             if (foundCategory.isPresent()) {
-                categoryList.remove(foundCategory);
-                applicationStatus.setStatus(true);
+                categoryList.remove(foundCategory.get());
+                checkApplicationState.setStatus(true);
                 System.out.println("Successfully remove category of ID: " + chosenCategoryId);
                 break;
             } else {
@@ -119,7 +118,7 @@ public class CategoryDAO {
                     .stream().filter(x -> x.getCategoryID() == chosenCategoryId).findFirst();
             if (foundCategory.isPresent()) {
                 foundCategory.get().setCategoryName(getCategoryName());
-                applicationStatus.setStatus(true);
+                checkApplicationState.setStatus(true);
                 break;
             } else {
                 System.out.println("Did`int find category id - please renter ID!");
@@ -127,22 +126,7 @@ public class CategoryDAO {
         }
     }
 
-    public void saveCategoryListToFile(List<Category> categoryList) {
-        FileWriter fileWriter;
-        try {
-            fileWriter = new FileWriter(FileTypes.NEW_CATEGORIES.getFileAddress());
-            for (Category category : categoryList) {
-                String pattern = category.getCategoryID() + ";" + category.getCategoryName() + ";" + category.getPriority();
-                fileWriter.write(pattern);
-                fileWriter.write("\n");
 
-            }
-            System.out.println("Category file has successfully saved");
-            fileWriter.close();
-        } catch (IOException e) {
-            System.out.println("There was some problem");
-        }
-    }
 
 
 }

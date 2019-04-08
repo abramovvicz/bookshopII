@@ -1,22 +1,18 @@
 package model;
 
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
+@AllArgsConstructor
 public class Author {
 
     private int id;
     private String fullName;
     private int age;
-
-    public Author(int id, String fullName, int age) {
-        this.id = id;
-        this.fullName = fullName;
-        this.age = age;
-    }
 
     @Override
     public String toString() {
